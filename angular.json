@@ -25,7 +25,32 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./src/assets/vendors/jquery/dist/jquery.min.js",
+              "./src/assets/vendors/bootstrap/dist/js/bootstrap.min.js",
+              "./src/assets/vendors/fastclick/lib/fastclick.js",
+              "./src/assets/vendors/nprogress/nprogress.js",
+              "./src/assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js",
+              "./src/assets/vendors/iCheck/icheck.min.js",
+              "./src/assets/vendors/moment/min/moment.min.js",
+              "./src/assets/vendors/bootstrap-daterangepicker/daterangepicker.js",
+              "./src/assets/vendors/Chart.js/dist/Chart.min.js",
+              "./src/assets/vendors/jquery-sparkline/dist/jquery.sparkline.min.js",
+              "./src/assets/vendors/gauge.js/dist/gauge.min.js",
+              "./src/assets/vendors/skycons/skycons.js",
+              "./src/assets/vendors/Flot/jquery.flot.js",
+              "./src/assets/vendors/Flot/jquery.flot.pie.js",
+              "./src/assets/vendors/Flot/jquery.flot.time.js",
+              "./src/assets/vendors/Flot/jquery.flot.stack.js",
+              "./src/assets/vendors/Flot/jquery.flot.resize.js",
+              "./src/assets/vendors/flot.orderbars/js/jquery.flot.orderBars.js",
+              "./src/assets/vendors/flot-spline/js/jquery.flot.spline.min.js",
+              "./src/assets/vendors/flot.curvedlines/curvedLines.js",
+              "./src/assets/vendors/DateJS/build/production/date.min.js",
+              "./src/assets/vendors/jqvmap/dist/jquery.vmap.js",
+              "./src/assets/vendors/jqvmap/dist/maps/jquery.vmap.world.js",
+              "./src/assets/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -81,7 +106,8 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [],
+            "scripts": [
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"

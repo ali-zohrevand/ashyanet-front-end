@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@import "assets/vendors/bootstrap/dist/css/bootstrap.min.css";
+@import "assets/vendors/bootstrap-rtl/dist/css/bootstrap-rtl.min.css";
+@import "assets/vendors/font-awesome/css/font-awesome.min.css";
+@import "assets/vendors/nprogress/nprogress.css";
+@import "assets/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css";
+@import "assets/css/daterangepicker.css";
+@import "assets/css/maps/jquery-jvectormap-2.0.3.css";
+@import "assets/vendors/bootstrap-daterangepicker/daterangepicker.css";
+@import "assets/css/custom.css";
+@import "assets/css/iot-logo.css";
+@import "assets/css/hardware-icon/hardware.css";
+@import "assets/vendors/iCheck/skins/flat/green.css";

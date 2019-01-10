@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="" name="description">
+  <meta content="" name="author">
+  <link href="../../assets/ico/favicon.ico" rel="shortcut icon">
+
+  <title>Popover Template for Bootstrap</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap RTL theme -->
+  <link href="../../dist/css/bootstrap-rtl.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="rtl.css" rel="stylesheet">
+
+</head>
+
+<body role="document">
+
+<!-- Fixed navbar -->
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Bootstrap theme</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
+
+<div class="container theme-showcase" role="main">
+  <form class="form-horizontal" role="form">
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button class="btn btn-default" data-container="body"
+                data-content="And here's some amazing content. It's very engaging. Right?" data-placement="top"
+                title="Popover title" type="button">Top Popover
+        </button>
+        <button class="btn btn-default" data-container="body"
+                data-content="And here's some amazing content. It's very engaging. Right?" data-placement="bottom"
+                title="Popover title" type="button">Bottom Popover
+        </button>
+        <button class="btn btn-default" data-container="body"
+                data-content="And here's some amazing content. It's very engaging. Right?" data-placement="right"
+                title="Popover title" type="button">Right Popover
+        </button>
+        <button class="btn btn-default" data-container="body"
+                data-content="And here's some amazing content. It's very engaging. Right?" data-placement="left"
+                title="Popover title" type="button">Left Popover
+        </button>
+      </div>
+    </div>
+  </form>
+</div> <!-- /container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="../../bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  $('button').popover();
+</script>
+</body>
+</html>
