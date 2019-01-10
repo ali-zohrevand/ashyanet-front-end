@@ -7,7 +7,7 @@
 
 # dependencies
 /node_modules
-
+src/assets/vendors/flot/.bower.json
 # IDEs and editors
 /.idea
 .project
