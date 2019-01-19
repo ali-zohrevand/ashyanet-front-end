@@ -19,6 +19,7 @@ import { RecoveryComponent } from './auth/recovery/recovery.component';
 import { MessageComponent } from './message/message.component';
 import {PagecontentComponent} from './panel/pagecontent/pagecontent.component';
 import {CreateDeviceComponent} from './panel/pagecontent/devices/create-device/create-device.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import {CreateDeviceComponent} from './panel/pagecontent/devices/create-device/c
   ],
   imports: [
     BrowserModule,
-    AppRout
+    AppRout,
+    FormsModule
   ],
   providers: [{provide: APP_BASE_HREF, useValue: '/'}]
   , bootstrap: [AppComponent]
