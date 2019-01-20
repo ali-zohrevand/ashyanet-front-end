@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Form, NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-create-device',
@@ -9,8 +10,21 @@ export class CreateDeviceComponent implements OnInit {
   section = 1;
   totalSection = 6;
   advanceConfig = false;
+  deviceName: string;
+  deviceOwnerName: string;
+  deviceKey: string;
+  location: any;
+  password: any;
+  rePassword: any;
+  publishTopicName: string;
+  basePathToAddTopicAddress: string;
+  ArrayPublishTopicAddress: string[] ;
 
   constructor() {
+    this.deviceOwnerName = 'GetdeviceOwnerName';
+    this.deviceKey = 'GetdeviceKey';
+    this.basePathToAddTopicAddress = '/serverId/UserName';
+    this.ArrayPublishTopicAddress = [];
   }
 
   ngOnInit() {
@@ -59,5 +73,13 @@ export class CreateDeviceComponent implements OnInit {
     this.advanceConfig = !this.advanceConfig;
     console.log('Checked');
     console.log(this.advanceConfig);
+  }
+
+  onSubmit(form: NgForm) {
+    console.log(form);
+  }
+
+  addPublishTopicAdress() {
+    this.ArrayPublishTopicAddress.push(this.publishTopicName);
   }
 }

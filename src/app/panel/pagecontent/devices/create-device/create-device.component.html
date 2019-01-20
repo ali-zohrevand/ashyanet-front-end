@@ -76,7 +76,7 @@
                   </a>
                 </li>
               </ul>
-              <form>
+              <form (ngSubmit)="onSubmit(formRegister)" #formRegister="ngForm">
                 <div *ngIf="section ==1" class="form-horizontal form-label-left">
 
                   <div class="form-group">
@@ -85,7 +85,7 @@
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <input class="form-control col-md-7 col-xs-12" id="deviceName" required
-                             type="text">
+                             type="text" [(ngModel)]="deviceName" name="deviceName"  >
                     </div>
                   </div>
                   <div class="form-group">
@@ -93,22 +93,21 @@
                       class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input class="form-control col-md-7 col-xs-12" id="dsc" name="ldsc" required
-                             type="text">
+                      <input class="form-control col-md-7 col-xs-12" id="dsc" name="dsc" required type="text" ngModel >
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="deviceOwner">مالک دستگاه</label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <input class="form-control col-md-7 col-xs-12" disabled="disabled" id="deviceOwner"
-                             name="deviceOwner-name" placeholder="deviceOwner" type="text">
+                             name="deviceOwnerName"  type="text" [(ngModel)]="deviceOwnerName">
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="deviceKey">کلید</label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <input class="form-control col-md-7 col-xs-12" disabled="disabled" id="deviceKey"
-                             name="middle-name" placeholder="deviceKey" type="text">
+                             name="deviceKey"  [(ngModel)]="deviceKey" type="text">
                     </div>
                   </div>
                   <div class="form-group">
@@ -116,14 +115,14 @@
                       <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input class="form-control col-md-7 col-xs-12" id="location" required="required"
+                      <input class="form-control col-md-7 col-xs-12" id="location" [(ngModel)]="location" name="location" required="required"
                              type="text">
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">نوع دستگاه</label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      <select class="form-control">
+                      <select class="form-control" ngModel name="type">
                         <option>لامپ</option>
                         <option>گزینه اول</option>
                         <option>گزینه دوم</option>
@@ -139,7 +138,7 @@
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <input class="form-control col-md-7 col-xs-12" id="password"
                              placeholder="رمز عبور را وارد نمایید."
-                             required="required" type="password">
+                             required="required" type="password" [(ngModel)]="password" name="password">
                     </div>
                   </div>
                   <div class="form-group">
@@ -149,7 +148,7 @@
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <input class="form-control col-md-7 col-xs-12" id="rePassword"
                              placeholder="مجددا رمز عبور را وارد نمایید."
-                             required="required" type="password">
+                             required="required" type="password" [(ngModel)]="rePassword" name="rePassword">
                     </div>
                   </div>
 
@@ -191,14 +190,14 @@
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="input-group">
-                          <input class="form-control" type="text">
+                          <input class="form-control" type="text" [(ngModel)]="publishTopicName" name="publishTopicName">
                           <div class="input-group-btn">
-                            <button class="btn" disabled> /dsadsadsdsa/username</button>
+                            <button class="btn" disabled> {{basePathToAddTopicAddress}}</button>
                           </div>
                           <!-- /btn-group -->
 
                         </div>
-                        <button class="btn btn-success" style="float: left">اضافه کردن تاپیک</button>
+                        <button class="btn btn-success" style="float: left" (click)="addPublishTopicAdress()">اضافه کردن تاپیک</button>
                         <table class="table table-striped ">
                           <thead>
                           <tr>
@@ -208,13 +207,13 @@
                           </tr>
                           </thead>
                           <tbody>
-                          <tr>
-                            <td>1</td>
+                          <tr *ngFor="let address of ArrayPublishTopicAddress;let i = index">
+                            <td>{{i}}</td>
                             <td>
-                              <a>Pesamakisssssssssssssssssssssssssssssssssssssssssssssssssni Backend UI</a>
+                              <a>{{address}}</a>
                             </td>
                             <td class="nowrap">
-                              <a class="btn btn-danger btn-xs" href="#"><i class="fa fa-trash-o"></i> حذف </a>
+                              <a class="btn btn-danger btn-xs" ><i class="fa fa-trash-o"></i> حذف </a>
                             </td>
                           </tr>
 
@@ -239,7 +238,7 @@
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="input-group">
-                          <input class="form-control" type="text">
+                          <input class="form-control" type="text" name="subscribeTopicName" ngModel>
                           <div class="input-group-btn">
                             <button class="btn" disabled> /dsadsadsdsa/username</button>
                           </div>
@@ -259,7 +258,7 @@
                           <tr>
                             <td>1</td>
                             <td>
-                              <a>Pesamakisssssssssssssssssssssssssssssssssssssssssssssssssni Backend UI</a>
+                              <a>dfsdf5d3f4354d3f5sd3f5 Backend UI</a>
                             </td>
                             <td class="nowrap">
                               <a class="btn btn-danger btn-xs" href="#"><i class="fa fa-trash-o"></i> حذف </a>
@@ -287,7 +286,7 @@
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="input-group">
-                          <input class="form-control" type="text">
+                          <input class="form-control" type="text" ngModel name="pubSubTopicName">
                           <div class="input-group-btn">
                             <button class="btn" disabled> /dsadsadsdsa/username</button>
                           </div>
@@ -334,7 +333,7 @@
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <input class="form-control col-md-7 col-xs-12" id="commandName"
-                             type="text">
+                             type="text" ngModel name="commandName">
                     </div>
                   </div>
                   <div class="form-group">
@@ -343,7 +342,7 @@
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <input class="form-control col-md-7 col-xs-12" id="commandValue"
-                             type="text">
+                             type="text" ngModel name="commandValue">
                     </div>
                   </div>
                   <div class="form-group">
@@ -352,7 +351,7 @@
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <input class="form-control col-md-7 col-xs-12" id="commandDsc"
-                             type="text">
+                             type="text" ngModel name="commandDsc">
                     </div>
                   </div>
                   <div class="form-group">
@@ -361,7 +360,7 @@
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <input class="form-control col-md-7 col-xs-12" id="commandAddress"
-                             type="text">
+                             type="text" ngModel name="commandAddress">
                     </div>
                   </div>
                   <table class="table table-striped ">
@@ -409,15 +408,15 @@
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <input class="form-control col-md-7 col-xs-12" id="dataName"
-                             type="text">
+                             type="text" ngModel name="dataName">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="commandValue">نوع داده
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dataType">نوع داده
 
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                      <select class="form-control">
+                      <select class="form-control" id="dataType" name="dataType" ngModel>
                         <option>عددی</option>
                         <option>رشته</option>
                         <option>جیسون</option>
@@ -430,7 +429,7 @@
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <input class="form-control col-md-7 col-xs-12" id="dataDsc"
-                             type="text">
+                             type="text" name="dataDsc" ngModel>
                     </div>
                   </div>
                   <div class="form-group">
@@ -439,7 +438,7 @@
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <input class="form-control col-md-7 col-xs-12" id="dataAddress"
-                             type="text">
+                             type="text" name="dataAddress" ngModel>
                     </div>
                   </div>
 
