@@ -82,4 +82,10 @@ export class CreateDeviceComponent implements OnInit {
   addPublishTopicAdress() {
     this.ArrayPublishTopicAddress.push(this.publishTopicName);
   }
+
+  deletPublishTopic(i: number) {
+  if (i > -1 && i < this.ArrayPublishTopicAddress.length) {
+    this.ArrayPublishTopicAddress.splice(i, 1);
+  }
+}
 }

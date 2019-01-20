@@ -208,12 +208,12 @@
                           </thead>
                           <tbody>
                           <tr *ngFor="let address of ArrayPublishTopicAddress;let i = index">
-                            <td>{{i}}</td>
+                            <td>{{i+1}}</td>
                             <td>
                               <a>{{address}}</a>
                             </td>
                             <td class="nowrap">
-                              <a class="btn btn-danger btn-xs" ><i class="fa fa-trash-o"></i> حذف </a>
+                              <a class="btn btn-danger btn-xs"  (click)="deletPublishTopic(i)"><i class="fa fa-trash-o"></i> حذف </a>
                             </td>
                           </tr>
 
