@@ -21,6 +21,7 @@ import {PagecontentComponent} from './panel/pagecontent/pagecontent.component';
 import {CreateDeviceComponent} from './panel/pagecontent/devices/create-device/create-device.component';
 import {FormsModule} from '@angular/forms';
 import { UpdateDeviceComponent } from './panel/pagecontent/devices/update-device/update-device.component';
+import {DevieMainComponent} from './panel/pagecontent/devices/devie-main/devie-main.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { UpdateDeviceComponent } from './panel/pagecontent/devices/update-device
     RecoveryComponent,
     MessageComponent,
     UpdateDeviceComponent,
+    DevieMainComponent,
   ],
   imports: [
     BrowserModule,

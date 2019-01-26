@@ -6,7 +6,8 @@ import {CreateDeviceComponent} from './panel/pagecontent/devices/create-device/c
 import {RecoveryComponent} from './auth/recovery/recovery.component';
 import {RegisterComponent} from './auth/register/register.component';
 import {MessageComponent} from './message/message.component';
-
+import {UpdateDeviceComponent} from './panel/pagecontent/devices/update-device/update-device.component';
+import {DevieMainComponent} from './panel/pagecontent/devices/devie-main/devie-main.component';
 const routes: Routes = [
   {path: '', redirectTo: '/panel', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
@@ -15,7 +16,10 @@ const routes: Routes = [
   {path: 'message', component: MessageComponent},
   {
     path: 'panel', component: PanelComponent, children: [
-      {path: 'create-device', component: CreateDeviceComponent}
+      {path: 'device', component: DevieMainComponent , children : [
+          {path: 'create', component: CreateDeviceComponent},
+          {path: ':id', component: UpdateDeviceComponent}
+        ]   },
     ]
   }
 
