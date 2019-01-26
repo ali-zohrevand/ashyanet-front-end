@@ -1,3 +1,430 @@
-<p>
-  update-device works!
-</p>
+<div class="page-title">
+  <div class="title_left">
+    <h3>مدیریت دستگاه</h3>
+  </div>
+
+
+  <div class="clearfix"></div>
+
+  <div class="row">
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>ایجاد دستگاه جدید
+          </h2>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <!-- Smart Wizard -->
+          <p>این یک فرم جادوگر پایه ای است که رنگ ها را از طرح انتخاب به ارث می برد.</p>
+          <div class="form_wizard wizard_horizontal" id="wizard">
+            <form (ngSubmit)="onSubmit(formRegister)" #formRegister="ngForm">
+              <div class="form-horizontal form-label-left">
+
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="deviceName">نام دستگاه
+                    <span class="required">*</span>
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input class="form-control col-md-7 col-xs-12" id="deviceName" required
+                           type="text" [(ngModel)]="deviceName" name="deviceName">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dsc"> توضیحات<span
+                    class="required">*</span>
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input class="form-control col-md-7 col-xs-12" id="dsc" name="dsc" required type="text" ngModel>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="deviceOwner">مالک دستگاه</label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input class="form-control col-md-7 col-xs-12" disabled="disabled" id="deviceOwner"
+                           name="deviceOwnerName" type="text" [(ngModel)]="deviceOwnerName">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="deviceKey">کلید</label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input class="form-control col-md-7 col-xs-12" disabled="disabled" id="deviceKey"
+                           name="deviceKey" [(ngModel)]="deviceKey" type="text">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="location">موقعیت مکانی
+                    <span class="required">*</span>
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input class="form-control col-md-7 col-xs-12" id="location" [(ngModel)]="location" name="location"
+                           required="required"
+                           type="text">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12">نوع دستگاه</label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <select class="form-control" ngModel name="type">
+                      <option>لامپ</option>
+                      <option>گزینه اول</option>
+                      <option>گزینه دوم</option>
+                      <option>گزینه سوم</option>
+                      <option>گزینه چهارم</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">رمز عبور
+                    <span class="required">*</span>
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input class="form-control col-md-7 col-xs-12" id="password"
+                           placeholder="رمز عبور را وارد نمایید."
+                           required="required" type="password" [(ngModel)]="password" name="password">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="rePassword">تکرار رمز عبور
+                    <span class="required">*</span>
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input class="form-control col-md-7 col-xs-12" id="rePassword"
+                           placeholder="مجددا رمز عبور را وارد نمایید."
+                           required="required" type="password" [(ngModel)]="rePassword" name="rePassword">
+                  </div>
+                </div>
+
+                <div class="form-group">
+
+                  <label class="col-md-3 col-sm-3 col-xs-12 control-label">تنظیمات پیش رفته
+                    <br>
+                  </label>
+
+
+                </div>
+
+
+              </div>
+              <div class="form-horizontal form-label-left">
+                <h4 class="StepTitle">اضافه کردن آدرس تاپیک های publish</h4>
+                <p>
+                  در این گام آدرس تاپیک هایی که میخواهید دستگاه شما آنها را پیگیری نماید را وارد نمایید.
+                </p>
+                <p>
+                  به ابتدای تمامی آدرس های
+                </p>
+                <div class="form-horizontal form-label-left">
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <div class="input-group">
+                        <input class="form-control" type="text" [(ngModel)]="publishTopicName" name="publishTopicName">
+                        <div class="input-group-btn">
+                          <button class="btn" disabled>sdsdsd</button>
+                        </div>
+                        <!-- /btn-group -->
+
+                      </div>
+                      <button class="btn btn-success" style="float: left" (click)="addPublishTopicAdress()">اضافه کردن
+                        تاپیک
+                      </button>
+                      <table class="table table-striped ">
+                        <thead>
+                        <tr>
+                          <th style="width: 1%"></th>
+                          <th style="width: 20%">نام تاپیک</th>
+                          <th style="width: 20%"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let address of ArrayPublishTopicAddress;let i = index">
+                          <td>{{i+1}}</td>
+                          <td>
+                            <a>{{address}}</a>
+                          </td>
+                          <td class="nowrap">
+                            <a class="btn btn-danger btn-xs" (click)="deletPublishTopic(i)"><i
+                              class="fa fa-trash-o"></i> حذف </a>
+                          </td>
+                        </tr>
+
+                        </tbody>
+                      </table>
+
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+              <div class="form-horizontal form-label-left">
+                <h4 class="StepTitle">اضافه کردن آدرس تاپیک های subscribe</h4>
+                <p>
+                  سه
+                </p>
+
+                <div class="form-horizontal form-label-left">
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <div class="input-group">
+                        <input class="form-control" type="text" name="subscribeTopicName" ngModel>
+                        <div class="input-group-btn">
+                          <button class="btn" disabled> /dsadsadsdsa/username</button>
+                        </div>
+                        <!-- /btn-group -->
+
+                      </div>
+                      <button class="btn btn-success" style="float: left">اضافه کردن تاپیک</button>
+                      <table class="table table-striped ">
+                        <thead>
+                        <tr>
+                          <th style="width: 1%"></th>
+                          <th style="width: 20%">نام تاپیک</th>
+                          <th style="width: 20%"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>
+                            <a>dfsdf5d3f4354d3f5sd3f5 Backend UI</a>
+                          </td>
+                          <td class="nowrap">
+                            <a class="btn btn-danger btn-xs" href="#"><i class="fa fa-trash-o"></i> حذف </a>
+                          </td>
+                        </tr>
+
+                        </tbody>
+                      </table>
+
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+              <div class="form-horizontal form-label-left">
+                <h4 class="StepTitle">اضافه کردن آدرس تاپیک های subscribe/publish</h4>
+                <p>
+                  چهار
+                </p>
+
+                <div class="form-horizontal form-label-left">
+                  <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                      <div class="input-group">
+                        <input class="form-control" type="text" ngModel name="pubSubTopicName">
+                        <div class="input-group-btn">
+                          <button class="btn" disabled> /dsadsadsdsa/username</button>
+                        </div>
+                        <!-- /btn-group -->
+
+                      </div>
+                      <button class="btn btn-success" style="float: left">اضافه کردن تاپیک</button>
+                      <table class="table table-striped ">
+                        <thead>
+                        <tr>
+                          <th style="width: 1%"></th>
+                          <th style="width: 20%">نام تاپیک</th>
+                          <th style="width: 20%"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>
+                            <a>Pesamakisssssssssssssssssssssssssssssssssssssssssssssssssni Backend UI</a>
+                          </td>
+                          <td class="nowrap">
+                            <a class="btn btn-danger btn-xs" href="#"><i class="fa fa-trash-o"></i> حذف </a>
+                          </td>
+                        </tr>
+
+                        </tbody>
+                      </table>
+
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+              <div class="form-horizontal form-label-left">
+                <h4 class="StepTitle">محتوی قدم چهارم</h4>
+                <p>
+                  پنچ
+                </p>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="commandName">نام دستور
+
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input class="form-control col-md-7 col-xs-12" id="commandName"
+                           type="text" ngModel name="commandName">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="commandValue">مقدار دستور
+
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input class="form-control col-md-7 col-xs-12" id="commandValue"
+                           type="text" ngModel name="commandValue">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="commandDsc">توضیحات
+
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input class="form-control col-md-7 col-xs-12" id="commandDsc"
+                           type="text" ngModel name="commandDsc">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="commandAddress">آدرس تاپیک
+
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input class="form-control col-md-7 col-xs-12" id="commandAddress"
+                           type="text" ngModel name="commandAddress">
+                  </div>
+                </div>
+
+                <table class="table table-striped ">
+                  <thead>
+                  <tr>
+                    <th style="width: 1%"></th>
+                    <th style="width: 20%">نام دستور</th>
+                    <th style="width: 20%">مقدار دستور</th>
+                    <th style="width: 20%">توضیحات دستور</th>
+                    <th style="width: 20%">آدرس تاپیک</th>
+                    <th style="width: 20%"></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>
+                      <a>ON</a>
+                    </td>
+                    <td>
+                      <a>on</a>
+                    </td>
+                    <td>
+                      <a>روشن کردن</a>
+                    </td>
+                    <td>
+                      <a>/sdsd/sdsd/ss12dsd</a>
+                    </td>
+                    <td class="nowrap">
+                      <a class="btn btn-danger btn-xs" href="#"><i class="fa fa-trash-o"></i> حذف </a>
+                    </td>
+                  </tr>
+
+                  </tbody>
+                </table>
+              </div>
+              <div class="form-horizontal form-label-left">
+                <h4 class="StepTitle">محتوی قدم ششم</h4>
+                <p>
+                  شش
+                </p>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dataName">نام داده
+
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input class="form-control col-md-7 col-xs-12" id="dataName"
+                           type="text" ngModel name="dataName">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dataType">نوع داده
+
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <select class="form-control" id="dataType" name="dataType" ngModel>
+                      <option>عددی</option>
+                      <option>رشته</option>
+                      <option>جیسون</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dataDsc">توضیحات
+
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input class="form-control col-md-7 col-xs-12" id="dataDsc"
+                           type="text" name="dataDsc" ngModel>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dataAddress">آدرس تاپیک
+
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                    <input class="form-control col-md-7 col-xs-12" id="dataAddress"
+                           type="text" name="dataAddress" ngModel>
+                  </div>
+                </div>
+
+                <table class="table table-striped ">
+                  <thead>
+                  <tr>
+                    <th style="width: 1%"></th>
+                    <th style="width: 20%">نام داده</th>
+                    <th style="width: 20%">نوع داده</th>
+                    <th style="width: 20%">توضیحات داده</th>
+                    <th style="width: 20%">آدرس تاپیک</th>
+                    <th style="width: 20%"></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>
+                      <a>ON</a>
+                    </td>
+                    <td>
+                      <a>on</a>
+                    </td>
+                    <td>
+                      <a>روشن کردن</a>
+                    </td>
+                    <td>
+                      <a>/sdsd/sdsd/ss12dsd</a>
+                    </td>
+                    <td class="nowrap">
+                      <a class="btn btn-danger btn-xs" href="#"><i class="fa fa-trash-o"></i> حذف </a>
+                    </td>
+                  </tr>
+
+                  </tbody>
+                </table>
+                <button class="btn btn-success" style="float: left" type="submit">ایجاد دستگاه</button>
+              </div>
+            </form>
+          </div>
+
+
+        </div>
+        <!-- End SmartWizard Content -->
+
+
+        <!-- End SmartWizard Content -->
+      </div>
+
+    </div>
+
+
+  </div>
+</div>
