@@ -20,6 +20,7 @@ import { MessageComponent } from './message/message.component';
 import {PagecontentComponent} from './panel/pagecontent/pagecontent.component';
 import {CreateDeviceComponent} from './panel/pagecontent/devices/create-device/create-device.component';
 import {FormsModule} from '@angular/forms';
+import { UpdateDeviceComponent } from './panel/pagecontent/devices/update-device/update-device.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {FormsModule} from '@angular/forms';
     CreateDeviceComponent,
     RegisterComponent,
     RecoveryComponent,
-    MessageComponent
+    MessageComponent,
+    UpdateDeviceComponent,
   ],
   imports: [
     BrowserModule,
