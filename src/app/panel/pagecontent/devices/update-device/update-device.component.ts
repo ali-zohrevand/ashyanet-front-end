@@ -21,7 +21,7 @@ export class UpdateDeviceComponent implements OnInit {
     this.deviceOwnerName = 'GetdeviceOwnerName';
     this.deviceKey = 'GetdeviceKey';
     this.basePathToAddTopicAddress = '/serverId/UserName';
-    this.ArrayPublishTopcAddress = [];
+    this.ArrayPublishTopicAddress = [];
   }
 
   ngOnInit() {
@@ -30,7 +30,6 @@ export class UpdateDeviceComponent implements OnInit {
   addPublishTopicAdress() {
     this.ArrayPublishTopicAddress.push(this.publishTopicName);
   }
-
   deletPublishTopic(i: number) {
     if (i > -1 && i < this.ArrayPublishTopicAddress.length) {
       this.ArrayPublishTopicAddress.splice(i, 1);
