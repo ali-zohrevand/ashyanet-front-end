@@ -20,8 +20,17 @@ import {MessageComponent} from './message/message.component';
 import {PagecontentComponent} from './panel/pagecontent/pagecontent.component';
 import {CreateDeviceComponent} from './panel/pagecontent/devices/create-device/create-device.component';
 import {FormsModule} from '@angular/forms';
-import {UpdateDeviceComponent} from './panel/pagecontent/devices/update-device/update-device.component';
+import {DeviceComponent} from './panel/pagecontent/devices/device/device.component';
 import {DeviceMainComponent} from './panel/pagecontent/devices/device-main/device-main.component';
+import { DeviceListComponent } from './panel/pagecontent/devices/device-list/device-list.component';
+import { TypesMainComponent } from './panel/pagecontent/types/types-main/types-main.component';
+import { LocationsMainComponent } from './panel/pagecontent/locations/locations-main/locations-main.component';
+import { LocationCreateComponent } from './panel/pagecontent/locations/location-create/location-create.component';
+import { TypeCreateComponent } from './panel/pagecontent/types/type-create/type-create.component';
+import { TypeComponent } from './panel/pagecontent/types/type/type.component';
+import { LocationComponent } from './panel/pagecontent/locations/location/location.component';
+import { LocationsListComponent } from './panel/pagecontent/locations/locations-list/locations-list.component';
+import { TypeListComponent } from './panel/pagecontent/types/type-list/type-list.component';
 
 @NgModule({
   declarations: [
@@ -41,8 +50,17 @@ import {DeviceMainComponent} from './panel/pagecontent/devices/device-main/devic
     RegisterComponent,
     RecoveryComponent,
     MessageComponent,
-    UpdateDeviceComponent,
+    DeviceComponent,
     DeviceMainComponent,
+    DeviceListComponent,
+    TypesMainComponent,
+    LocationsMainComponent,
+    LocationCreateComponent,
+    TypeCreateComponent,
+    TypeComponent,
+    LocationComponent,
+    LocationsListComponent,
+    TypeListComponent,
   ],
   imports: [
     BrowserModule,

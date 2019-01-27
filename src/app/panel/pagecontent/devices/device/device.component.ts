@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-update-device',
-  templateUrl: './update-device.component.html',
-  styleUrls: ['./update-device.component.css']
+  templateUrl: './device.component.html',
+  styleUrls: ['./device.component.css']
 })
-export class UpdateDeviceComponent implements OnInit {
+export class DeviceComponent implements OnInit {
   private advanceConfig = false;
   private deviceName: string;
   private deviceOwnerName: string;
