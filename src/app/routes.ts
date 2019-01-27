@@ -30,6 +30,13 @@ const routes: Routes = [
         path: 'devices', component: DeviceMainComponent, children: [
           {path: '', component: DeviceListComponent},
           {path: 'create', component: CreateDeviceComponent},
+          {
+            path: 'types', component: TypesMainComponent, children: [
+              {path: '', component: TypeListComponent},
+              {path: 'create', component: TypeCreateComponent},
+              {path: ':id', component: TypeComponent}
+            ]
+          },
           {path: ':id', component: DeviceComponent}
         ]   },
       {
@@ -38,14 +45,8 @@ const routes: Routes = [
           {path: 'create', component: LocationCreateComponent },
           {path: ':id' , component: LocationComponent}
         ]
-      },
-      {
-        path: 'types', component: TypesMainComponent, children: [
-          {path: '', component: TypeListComponent},
-          {path: 'create', component : TypeCreateComponent },
-          {path: ':id', component: TypeComponent}
-        ]
       }
+
     ]
   }
 
