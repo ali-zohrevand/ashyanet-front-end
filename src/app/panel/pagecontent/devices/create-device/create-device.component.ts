@@ -7,18 +7,18 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./create-device.component.css']
 })
 export class CreateDeviceComponent implements OnInit {
-  private section = 1;
-  private totalSection = 6;
-  private advanceConfig = false;
-  private deviceName: string;
-  private deviceOwnerName: string;
-  private deviceKey: string;
-  private location: any;
-  private password: any;
-  private rePassword: any;
-  private publishTopicName: string;
-  private basePathToAddTopicAddress: string;
-  private ArrayPublishTopicAddress: string[];
+   section = 1;
+   totalSection = 6;
+   advanceConfig = false;
+   deviceName: string;
+   deviceOwnerName: string;
+   deviceKey: string;
+   location: any;
+   password: any;
+   rePassword: any;
+   publishTopicName: string;
+   basePathToAddTopicAddress: string;
+   ArrayPublishTopicAddress: string[];
 
   constructor() {
     this.deviceOwnerName = 'GetdeviceOwnerName';
