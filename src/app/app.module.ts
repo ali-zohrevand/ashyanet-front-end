@@ -19,7 +19,7 @@ import {RecoveryComponent} from './auth/recovery/recovery.component';
 import {MessageComponent} from './message/message.component';
 import {PagecontentComponent} from './panel/pagecontent/pagecontent.component';
 import {CreateDeviceComponent} from './panel/pagecontent/devices/create-device/create-device.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DeviceComponent} from './panel/pagecontent/devices/device/device.component';
 import {DeviceMainComponent} from './panel/pagecontent/devices/device-main/device-main.component';
 import { DeviceListComponent } from './panel/pagecontent/devices/device-list/device-list.component';
@@ -65,7 +65,8 @@ import { TypeListComponent } from './panel/pagecontent/types/type-list/type-list
   imports: [
     BrowserModule,
     AppRout,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [{provide: APP_BASE_HREF, useValue: '/'}]
   , bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {NgForm} from '@angular/forms';
+import {Component, Input, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Device} from '../../../../models/device/device';
 
 @Component({
   selector: 'app-create-device',
@@ -13,21 +14,47 @@ export class CreateDeviceComponent implements OnInit {
    deviceName: string;
    deviceOwnerName: string;
    deviceKey: string;
-   location: any;
+   location: string;
    password: any;
    rePassword: any;
    publishTopicName: string;
    basePathToAddTopicAddress: string;
    ArrayPublishTopicAddress: string[];
 
+   newDevice: Device;
+   createDeviceForm: FormGroup;
+  commandAddress: string;
   constructor() {
     this.deviceOwnerName = 'GetdeviceOwnerName';
     this.deviceKey = 'GetdeviceKey';
     this.basePathToAddTopicAddress = '/serverId/UserName';
     this.ArrayPublishTopicAddress = [];
+    this.location = 'home';
+    this.advanceConfig = false;
   }
 
   ngOnInit() {
+    this.createDeviceForm = new FormGroup({
+      'deviceName': new FormControl(null, Validators.required),
+      'description': new FormControl(),
+      'type' : new FormControl('lamp', Validators.required),
+      'owner': new FormControl(null, Validators.required),
+      'key': new FormControl(null, Validators.required),
+      'password': new FormControl(null, [Validators.required]),
+      'rePassword': new FormControl(null, [Validators.required]),
+      'location': new FormControl(),
+      'publish': new FormControl(),
+      'subscribe': new FormControl(),
+      'pubsub': new FormControl(),
+      'dataName': new FormControl(),
+      'dataType': new FormControl(),
+      'dataDescription' : new FormControl(),
+      'dataAddress': new FormControl(),
+      'commandName': new FormControl(),
+      'commandValue': new FormControl(),
+      'commandDescription' : new FormControl(),
+      'commandAddress': new FormControl()
+    });
   }
 
   next() {
@@ -75,8 +102,8 @@ export class CreateDeviceComponent implements OnInit {
     console.log(this.advanceConfig);
   }
 
-  onSubmit(form: NgForm) {
-    console.log(form);
+  onSubmit() {
+    console.log(this.createDeviceForm);
   }
 
   addPublishTopicAdress() {
@@ -87,4 +114,5 @@ export class CreateDeviceComponent implements OnInit {
     this.ArrayPublishTopicAddress.splice(i, 1);
   }
 }
+
 }
