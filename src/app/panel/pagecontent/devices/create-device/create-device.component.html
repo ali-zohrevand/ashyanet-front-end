@@ -75,7 +75,7 @@
                 </a>
               </li>
             </ul>
-            <form (ngSubmit)="onSubmit()"  [formGroup]="createDeviceForm" >
+            <form (ngSubmit)="onSubmit()"  >
               <div *ngIf="section ==1" class="form-horizontal form-label-left">
 
                 <div class="form-group">
@@ -84,7 +84,7 @@
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <input class="form-control col-md-7 col-xs-12" id="deviceName" required
-                           type="text" [(ngModel)]="deviceName" name="deviceName" formControlName="deviceName">
+                           type="text" [(ngModel)]="deviceName" name="deviceName">
                   </div>
                 <span *ngIf="!createDeviceForm.get('deviceName').valid && createDeviceForm.get('deviceName').touched" class="help-block" style="color: red" > لطفا نام دستگاه را وارد نمایید.</span>
                 </div>
