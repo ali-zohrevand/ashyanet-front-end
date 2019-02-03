@@ -1,6 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {NgForm} from '@angular/forms';
 import {Device} from '../../../../models/device/device';
+import {Location} from '../../../../models/Locations/location';
 
 @Component({
   selector: 'app-create-device',
@@ -8,53 +9,41 @@ import {Device} from '../../../../models/device/device';
   styleUrls: ['./create-device.component.css']
 })
 export class CreateDeviceComponent implements OnInit {
-   section = 1;
-   totalSection = 6;
-   advanceConfig = false;
-   deviceName: string;
-   deviceOwnerName: string;
-   deviceKey: string;
-   location: string;
-   password: any;
-   rePassword: any;
-   publishTopicName: string;
-   basePathToAddTopicAddress: string;
-   ArrayPublishTopicAddress: string[];
-
-   newDevice: Device;
-   createDeviceForm: FormGroup;
-  commandAddress: string;
+  @ViewChild('formRegister') createForm: NgForm;
+   device: Device;
+  section = 1;
+  totalSection = 6;
+  advanceConfig = false;
+  deviceName: string;
+  deviceOwnerName: string;
+  deviceKey: string;
+  location: any;
+  password: any;
+  rePassword: any;
+  publishTopicName: string;
+  basePathToAddTopicAddress: string;
+  ArrayPublishTopicAddress: string[];
+  types: string[];
+  locations: Location[];
   constructor() {
+    this.device= new Device();
     this.deviceOwnerName = 'GetdeviceOwnerName';
     this.deviceKey = 'GetdeviceKey';
     this.basePathToAddTopicAddress = '/serverId/UserName';
     this.ArrayPublishTopicAddress = [];
-    this.location = 'home';
-    this.advanceConfig = false;
+    const l1 = new Location('', 'خانه', 'home', '', null, '', '', '', null);
+    const l2 = new Location('', 'اتاق', 'room', '', null, '', '', '', null);
+    this.locations = [l1, l2];
+    this.types = ['light', 'moveMent'];
   }
 
   ngOnInit() {
-    this.createDeviceForm = new FormGroup({
-      'deviceName': new FormControl(null, Validators.required),
-      'description': new FormControl(),
-      'type' : new FormControl('lamp', Validators.required),
-      'owner': new FormControl(null, Validators.required),
-      'key': new FormControl(null, Validators.required),
-      'password': new FormControl(null, [Validators.required]),
-      'rePassword': new FormControl(null, [Validators.required]),
-      'location': new FormControl(),
-      'publish': new FormControl(),
-      'subscribe': new FormControl(),
-      'pubsub': new FormControl(),
-      'dataName': new FormControl(),
-      'dataType': new FormControl(),
-      'dataDescription' : new FormControl(),
-      'dataAddress': new FormControl(),
-      'commandName': new FormControl(),
-      'commandValue': new FormControl(),
-      'commandDescription' : new FormControl(),
-      'commandAddress': new FormControl()
-    });
+    this.createForm.valueChanges.subscribe(
+      (value ) => {
+        console.log(value);
+      }
+    );
+
   }
 
   next() {
@@ -102,17 +91,16 @@ export class CreateDeviceComponent implements OnInit {
     console.log(this.advanceConfig);
   }
 
-  onSubmit() {
-    console.log(this.createDeviceForm);
+  onSubmit(form: NgForm) {
+    console.log(form);
   }
 
   addPublishTopicAdress() {
     this.ArrayPublishTopicAddress.push(this.publishTopicName);
   }
   deletPublishTopic(i: number) {
-  if (i > -1 && i < this.ArrayPublishTopicAddress.length) {
-    this.ArrayPublishTopicAddress.splice(i, 1);
+    if (i > -1 && i < this.ArrayPublishTopicAddress.length) {
+      this.ArrayPublishTopicAddress.splice(i, 1);
+    }
   }
-}
-
 }

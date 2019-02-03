@@ -75,7 +75,7 @@
                 </a>
               </li>
             </ul>
-            <form (ngSubmit)="onSubmit()"  >
+            <form (ngSubmit)="onSubmit(formRegister)" #formRegister="ngForm">
               <div *ngIf="section ==1" class="form-horizontal form-label-left">
 
                 <div class="form-group">
@@ -84,53 +84,50 @@
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <input class="form-control col-md-7 col-xs-12" id="deviceName" required
-                           type="text" [(ngModel)]="deviceName" name="deviceName">
+                           type="text" [(ngModel)]="device.devicename" name="deviceName"  >
                   </div>
-                <span *ngIf="!createDeviceForm.get('deviceName').valid && createDeviceForm.get('deviceName').touched" class="help-block" style="color: red" > لطفا نام دستگاه را وارد نمایید.</span>
                 </div>
                 <div class="form-group">
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dsc" [(ngModel)]="dsc"> توضیحات  </label>
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="dsc"> توضیحات<span
+                    class="required">*</span>
+                  </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                    <input class="form-control col-md-7 col-xs-12" id="dsc" name="dsc"  type="text" formControlName="description" >
+                    <input class="form-control col-md-7 col-xs-12" id="dsc" name="dsc" required type="text" [(ngModel)]="device.description" >
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="deviceOwner">مالک دستگاه</label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <input class="form-control col-md-7 col-xs-12" disabled="disabled" id="deviceOwner"
-                           name="deviceOwnerName"  type="text" [(ngModel)]="deviceOwnerName" formControlName="owner">
+                           name="deviceOwnerName"  type="text" [(ngModel)]="deviceOwnerName">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="deviceKey">کلید</label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <input class="form-control col-md-7 col-xs-12" disabled="disabled" id="deviceKey"
-                           name="deviceKey"  [(ngModel)]="deviceKey" formControlName="key" type="text">
+                           name="deviceKey"  [(ngModel)]="deviceKey" type="text">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="location">موقعیت مکانی
+                    <span class="required">*</span>
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-
-                    <select class="form-control" [(ngModel)]="location" name="type" id="location" [(ngModel)]="location" name="location" formControlName="location">
-                      <option value="home">home</option>
-                      <option value="room">room</option>
-
+                    <select class="form-control" [(ngModel)]="device.location" id="location" name="location">
+                      <option *ngFor="let l of locations" [value]="l.Name">{{l.DisplayName}}</option>
                     </select>
-                    <small class="text-navy">
-                      <a style="cursor: pointer" routerLink="/panel/locations/create">  مکان جدید؟ </a>
-                    </small>
                   </div>
-
                 </div>
                 <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12">نوع دستگاه</label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                    <select class="form-control" ngModel name="type" formControlName="type">
-                      <option value="lamp">lamp</option>
-                      <option value="move">movement</option>
-
+                    <select class="form-control" ngModel name="type">
+                      <option>لامپ</option>
+                      <option>گزینه اول</option>
+                      <option>گزینه دوم</option>
+                      <option>گزینه سوم</option>
+                      <option>گزینه چهارم</option>
                     </select>
                     <small class="text-navy">
                       <a style="cursor: pointer" routerLink="/panel/devices/types/create">  نوع جدید؟ </a>
@@ -144,11 +141,8 @@
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <input class="form-control col-md-7 col-xs-12" id="password"
                            placeholder="رمز عبور را وارد نمایید."
-                           required="required" type="password" [(ngModel)]="password" name="password" formControlName="password">
-
+                           required="required" type="password" [(ngModel)]="password" name="password">
                   </div>
-                  <span *ngIf="!createDeviceForm.get('password').valid && createDeviceForm.get('password').touched" class="help-block" style="color: red" > لطفا رمز عبور را وارد کنید</span>
-
                 </div>
                 <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="rePassword">تکرار رمز عبور
@@ -157,11 +151,8 @@
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <input class="form-control col-md-7 col-xs-12" id="rePassword"
                            placeholder="مجددا رمز عبور را وارد نمایید."
-                           required="required" type="password" [(ngModel)]="rePassword"  formControlName="rePassword" name="rePassword">
-
+                           required="required" type="password" [(ngModel)]="rePassword" name="rePassword">
                   </div>
-                  <span *ngIf="!createDeviceForm.get('rePassword').valid && createDeviceForm.get('rePassword').touched" class="help-block" style="color: red" > لطفا رمز عبور را مجددا وارد کنید</span>
-
                 </div>
 
                 <div class="form-group">
@@ -173,7 +164,7 @@
                   <div class="col-md-9 col-sm-9 col-xs-12">
                     <div class="checkbox">
                       <label>
-                        <input (change)="advanceConfigChecked()" type="checkbox"> فعال شدن تنظیمات مربوط
+                        <input (change)="advanceConfigChecked()" class="flat" type="checkbox"> فعال شدن تنظیمات مربوط
                         به بروکر، دیتا و کامند
                       </label>
                       <br>
@@ -202,7 +193,7 @@
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <div class="input-group">
-                        <input class="form-control" type="text" [(ngModel)]="publishTopicName" name="publishTopicName" formControlName="publish">
+                        <input class="form-control" type="text" [(ngModel)]="publishTopicName" name="publishTopicName">
                         <div class="input-group-btn">
                           <button class="btn" disabled> {{basePathToAddTopicAddress}}</button>
                         </div>
@@ -250,7 +241,7 @@
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <div class="input-group">
-                        <input class="form-control" type="text" name="subscribeTopicName" formControlName="subscribe">
+                        <input class="form-control" type="text" name="subscribeTopicName" ngModel>
                         <div class="input-group-btn">
                           <button class="btn" disabled> /dsadsadsdsa/username</button>
                         </div>
@@ -298,7 +289,7 @@
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                       <div class="input-group">
-                        <input class="form-control" type="text" formControlName="pubsub" name="pubSubTopicName">
+                        <input class="form-control" type="text" ngModel name="pubSubTopicName">
                         <div class="input-group-btn">
                           <button class="btn" disabled> /dsadsadsdsa/username</button>
                         </div>
@@ -345,7 +336,7 @@
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <input class="form-control col-md-7 col-xs-12" id="commandName"
-                           type="text" ngModel name="commandName" formControlName="commandName">
+                           type="text" ngModel name="commandName">
                   </div>
                 </div>
                 <div class="form-group">
@@ -354,7 +345,7 @@
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <input class="form-control col-md-7 col-xs-12" id="commandValue"
-                           type="text" formControlName="commandValue" name="commandValue">
+                           type="text" ngModel name="commandValue">
                   </div>
                 </div>
                 <div class="form-group">
@@ -363,16 +354,16 @@
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <input class="form-control col-md-7 col-xs-12" id="commandDsc"
-                           type="text"  name="commandDsc" formControlName="commandDescription">
+                           type="text" ngModel name="commandDsc">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="commandAddress" >آدرس تاپیک
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="commandAddress">آدرس تاپیک
 
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <input class="form-control col-md-7 col-xs-12" id="commandAddress"
-                           type="text" formControlName="commandAddress" [(ngModel)]="commandAddress" name="commandAddress">
+                           type="text" ngModel name="commandAddress">
                   </div>
                 </div>
                 <table class="table table-striped ">
@@ -420,7 +411,7 @@
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <input class="form-control col-md-7 col-xs-12" id="dataName"
-                           type="text" formControlName="dataName" name="dataName">
+                           type="text" ngModel name="dataName">
                   </div>
                 </div>
                 <div class="form-group">
@@ -428,10 +419,10 @@
 
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                    <select class="form-control" id="dataType" name="dataType" formControlName="dataType">
-                      <option value="int">عددی</option>
-                      <option value="string">رشته</option>
-                      <option value="json">جیسون</option>
+                    <select class="form-control" id="dataType" name="dataType" ngModel>
+                      <option>عددی</option>
+                      <option>رشته</option>
+                      <option>جیسون</option>
                     </select>
                   </div>
                 </div>
@@ -441,7 +432,7 @@
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <input class="form-control col-md-7 col-xs-12" id="dataDsc"
-                           type="text" name="dataDsc" formControlName="dataDescription">
+                           type="text" name="dataDsc" ngModel>
                   </div>
                 </div>
                 <div class="form-group">
@@ -450,7 +441,7 @@
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <input class="form-control col-md-7 col-xs-12" id="dataAddress"
-                           type="text" name="dataAddress" formControlName="dataAddress">
+                           type="text" name="dataAddress" ngModel>
                   </div>
                 </div>
 

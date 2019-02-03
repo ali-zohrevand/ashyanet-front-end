@@ -15,7 +15,7 @@ export class Device {
   public commands: DeviceCommand[];
   public mqtt_password: string;
 
-  constructor(
+  /*constructor(
     id: string,
     devicename: string,
     description: string,
@@ -41,5 +41,5 @@ export class Device {
     this.data = data;
     this.commands = commands;
     this.mqtt_password = mqtt_password;
-  }
+  }*/
 }
