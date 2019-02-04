@@ -15,6 +15,14 @@ export class Device {
   public commands: DeviceCommand[];
   public mqtt_password: string;
 
+  constructor() {
+    this.publish = [];
+    this.subscribe = [];
+    this.pubsub = [];
+    this.data = [];
+    this.commands = [];
+  }
+
   /*constructor(
     id: string,
     devicename: string,
