@@ -31,6 +31,10 @@ import { TypeComponent } from './panel/pagecontent/types/type/type.component';
 import { LocationComponent } from './panel/pagecontent/locations/location/location.component';
 import { LocationsListComponent } from './panel/pagecontent/locations/locations-list/locations-list.component';
 import { TypeListComponent } from './panel/pagecontent/types/type-list/type-list.component';
+import {ErrorInterceptor} from './services/Interceptors/error-interceptor';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {AuthInterceptor} from './services/Interceptors/auth-interceptor';
+import { LogoutComponent } from './auth/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -61,14 +65,18 @@ import { TypeListComponent } from './panel/pagecontent/types/type-list/type-list
     LocationComponent,
     LocationsListComponent,
     TypeListComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
     AppRout,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [{provide: APP_BASE_HREF, useValue: '/'}]
+  providers: [{provide: APP_BASE_HREF, useValue: '/'},
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    ]
   , bootstrap: [AppComponent]
 })
 export class AppModule { }

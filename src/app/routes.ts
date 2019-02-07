@@ -17,6 +17,8 @@ import {TypeComponent} from './panel/pagecontent/types/type/type.component';
 import {DeviceListComponent} from './panel/pagecontent/devices/device-list/device-list.component';
 import {TypeListComponent} from './panel/pagecontent/types/type-list/type-list.component';
 import {LocationsListComponent} from './panel/pagecontent/locations/locations-list/locations-list.component';
+import {LoginGaurd} from './services/guard/login-gaurd.service';
+import {LogoutComponent} from './auth/logout/logout.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/panel', pathMatch: 'full'},
@@ -24,8 +26,10 @@ const routes: Routes = [
   {path: 'recover', component: RecoveryComponent},
   {path: 'register' , component: RegisterComponent},
   {path: 'message', component: MessageComponent},
+  {path: 'logout', component: LogoutComponent},
+
   {
-    path: 'panel', component: PanelComponent, children: [
+    path: 'panel', component: PanelComponent , canActivate : [LoginGaurd], children: [
       {
         path: 'devices', component: DeviceMainComponent, children: [
           {path: '', component: DeviceListComponent},

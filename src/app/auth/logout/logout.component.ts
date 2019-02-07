@@ -3,17 +3,17 @@ import {Router} from '@angular/router';
 import {AuthenticationService} from '../../services/Auth/authentication.service';
 
 @Component({
-  selector: 'app-sidebar-footer',
-  templateUrl: './sidebar-footer.component.html',
-  styleUrls: ['./sidebar-footer.component.css']
+  selector: 'app-logout',
+  templateUrl: './logout.component.html',
+  styleUrls: ['./logout.component.css']
 })
-export class SidebarFooterComponent implements OnInit {
+export class LogoutComponent implements OnInit {
 
   constructor(private router: Router, private auth: AuthenticationService) { }
 
   ngOnInit() {
+    this.logout();
   }
-
   logout() {
     this.auth.logout();
     this.router.navigate(['login']);
