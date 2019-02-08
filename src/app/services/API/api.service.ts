@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Device} from '../../models/device/device';
 import {Info} from '../../models/Info/info';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ApiService {
    devicesLisPAth = 'user/devices';
    infoPath = 'user/info';
   constructor(private httpClient: HttpClient) { }
-  getApi(path: string) {
+  getApi<T>(path: stringy): Observable <T> {
     switch (path) {
       case 'devices':
       return this.httpClient.get<Device[]>(this.baseUrl + this.devicesLisPAth);
