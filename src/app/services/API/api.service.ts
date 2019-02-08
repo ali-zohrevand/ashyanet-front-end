@@ -12,7 +12,7 @@ export class ApiService {
    devicesLisPAth = 'user/devices';
    infoPath = 'user/info';
   constructor(private httpClient: HttpClient) { }
-  getApi<T>(path: stringy): Observable <T> {
+  getApi(path: string) {
     switch (path) {
       case 'devices':
       return this.httpClient.get<Device[]>(this.baseUrl + this.devicesLisPAth);
