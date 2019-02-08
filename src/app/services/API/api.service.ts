@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Device} from '../../models/device/device';
 import {Info} from '../../models/Info/info';
-import {Observable} from 'rxjs';
-
+import 'rxjs/add/operator/map';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +14,12 @@ export class ApiService {
   getApi(path: string) {
     switch (path) {
       case 'devices':
-      return this.httpClient.get<Device[]>(this.baseUrl + this.devicesLisPAth);
+       this.httpClient.get<Device[]>(this.baseUrl + this.devicesLisPAth).subscribe(
+        (Devics) => {
+        return Devics;
+      }, (errror: Response) => {
+          return errror;
+         });
       break;
       case 'info':
         return this.httpClient.get<Info>(this.baseUrl + this.infoPath);

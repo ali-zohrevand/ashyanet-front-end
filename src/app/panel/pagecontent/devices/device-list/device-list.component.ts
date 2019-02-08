@@ -18,6 +18,7 @@ export class DeviceListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.api.getApi('devices').subscribe((Devices) => {});
 /*    this.api.getApi('devices').subscribe(
       (reponse => {
         this.errorHapened = false;
