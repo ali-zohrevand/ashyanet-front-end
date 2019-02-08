@@ -24,10 +24,10 @@ export class AuthenticationService {
     if (token === null) {
       return false;
     }
-    // Todo : Cheak token in api
-/*    this.http.get<{valid:boolean}>('https://127.0.0.1:5000/jwt/' + token).subscribe(
+    this.http.get<{valid: boolean}>('https://127.0.0.1:5000/jwt/' + token).subscribe(
       response => {
-        if (response.valid){
+        console.log(response);
+        if (response.valid) {
           return true;
         }
         return false;
@@ -35,7 +35,7 @@ export class AuthenticationService {
       error1 => {
         return false;
       }
-    );*/
+    );
   return true;
   }
 

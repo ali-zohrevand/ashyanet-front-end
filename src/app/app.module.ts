@@ -35,6 +35,8 @@ import {ErrorInterceptor} from './services/Interceptors/error-interceptor';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './services/Interceptors/auth-interceptor';
 import { LogoutComponent } from './auth/logout/logout.component';
+import {AuthenticationService} from './services/Auth/authentication.service';
+import {ApiService} from './services/API/api.service';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,10 @@ import { LogoutComponent } from './auth/logout/logout.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [{provide: APP_BASE_HREF, useValue: '/'},
+  providers: [
+    AuthenticationService,
+    ApiService,
+    {provide: APP_BASE_HREF, useValue: '/'},
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
     ]
   , bootstrap: [AppComponent]
