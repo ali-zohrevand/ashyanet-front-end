@@ -18,7 +18,7 @@ export class DeviceListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.api.getApi('devices').subscribe(
+/*    this.api.getApi('devices').subscribe(
       (reponse => {
         this.errorHapened = false;
         if (reponse.length > 0 ) {
@@ -32,7 +32,7 @@ export class DeviceListComponent implements OnInit {
           this.notAccess = true;
           }
       }
-    );
+    );*/
   }
 
 }

@@ -5,6 +5,8 @@ import {Location} from '../../../../models/Locations/location';
 import {Types} from '../../../../models/Types/types';
 import {DeviceCommand} from '../../../../models/device/device-command';
 import {DeviceData} from '../../../../models/device/device-data';
+import {ApiService} from '../../../../services/API/api.service';
+import {Info} from '../../../../models/Info/info';
 
 @Component({
   selector: 'app-create-device',
@@ -40,7 +42,7 @@ export class CreateDeviceComponent implements OnInit {
   command_name: string;
   command_value: string;
   command_dsc: string;
-  constructor() {
+  constructor(private apiServices: ApiService) {
     this.deviceCommand = new DeviceCommand();
     this.command_address = '';
     this.command_name = '';
@@ -66,12 +68,19 @@ export class CreateDeviceComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.createForm.valueChanges.subscribe(
+ /*   this.createForm.valueChanges.subscribe(
       (value ) => {
         console.log(value);
       }
-    );
+    );*/
+/*this.apiServices.getApi('info').subscribe(
+  (info) => {
+    this.basePathToAddTopicAddress=
+  },
+  (errorResponse: Response) => {
 
+  }
+);*/
   }
 
 
