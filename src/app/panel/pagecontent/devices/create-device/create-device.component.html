@@ -16,20 +16,21 @@
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
+          <div>
+            <p *ngIf="locations.length===0">
+              شما هنوز مکانی تعریف نکرده اید. برای ایجاد دستگاه می بایست مکانی تعریف نمایید.
+              <a class="btn btn-default" routerLink="/panel/locations/create"> مکان جدید بسازید.</a>
+            </p>
+            <p *ngIf="types.length===0">
+              نوع دستگاه جدیدی وجود ندارد.
+              <a class="btn btn-default" routerLink="/panel/devices/types/create"> نوع دستگاه جدید بسازید.</a>
+
+            </p>
+          </div>
           <!-- Smart Wizard -->
           <div class="help-block" style="color: blue;text-align: center" *ngIf="!createForm.valid && createForm.submitted"> لطفا به پیغام های خطا توجه کنید. تشکر. </div>
           <div class="form_wizard wizard_horizontal" id="wizard">
-            <div>
-              <p *ngIf="locations.length===0">
-                شما هنوز مکانی تعریف نکرده اید. برای ایجاد دستگاه می بایست مکانی تعریف نمایید.
-                <a class="btn btn-default" routerLink="/panel/locations/create"> مکان جدید بسازید.</a>
-              </p>
-              <p *ngIf="types.length===0">
-                نوع دستگاه جدیدی وجود ندارد.
-                <a class="btn btn-default" routerLink="/panel/devices/types/create"> نوع دستگاه جدید بسازید.</a>
 
-              </p>
-            </div>
             <form *ngIf="types.length>0 && locations.length>0" (ngSubmit)="onSubmit(formRegister)"
                   #formRegister="ngForm">
               <div  class="form-horizontal form-label-left">
