@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -24,18 +23,19 @@ export class AuthenticationService {
     if (token === null) {
       return false;
     }
-    this.http.get<{valid: boolean}>('https://127.0.0.1:5000/jwt/' + token).subscribe(
-      response => {
-        console.log(response);
-        if (response.valid) {
-          return true;
-        }
-        return false;
-      },
-      error1 => {
-        return false;
-      }
-    );
+    /*    this.http.get<{valid: boolean}>('https://127.0.0.1:5000/jwt/' + token).subscribe(
+          response => {
+            console.log(response);
+            if (response.valid) {
+              return true;
+            }
+            return false;
+          },
+          (error1: Response) => {
+            console.log(error1);
+            return false;
+          }
+        );*/
   return true;
   }
 

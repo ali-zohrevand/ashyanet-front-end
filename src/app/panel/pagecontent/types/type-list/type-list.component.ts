@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Types} from '../../../../models/Types/types';
+import {ApiService} from '../../../../services/API/api.service';
 
 @Component({
   selector: 'app-type-list',
@@ -6,10 +8,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./type-list.component.css']
 })
 export class TypeListComponent implements OnInit {
+  types: Types[];
+  errorHapened: boolean;
 
-  constructor() { }
+  constructor(private apiServices: ApiService) {
+    this.types = [];
+  }
 
   ngOnInit() {
+    this.apiServices.getApi('types').subscribe(
+      (types: Types[]) => {
+        this.types = types;
+        console.log(this.types);
+      },
+      (error: Response) => {
+        this.errorHapened = true;
+
+      }
+    );
   }
 
 }

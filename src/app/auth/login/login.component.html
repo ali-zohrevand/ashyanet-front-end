@@ -15,7 +15,9 @@
           <div class="help-block" style="color: red" *ngIf="!passwordElemet.valid && passwordElemet.touched "> لطفا رمز عبور را وارد نمایید.</div>
 
           <div>
-            <button class="btn btn-default submit" type="submit" style="float: right">ورود</button>
+            <button class="btn btn-default submit" [disabled]="!loginForm.valid" type="submit" style="float: right">
+              ورود
+            </button>
             <a class="reset_pass base" routerLink="/recover">رمز ورود را از دست دادید؟</a>
           </div>
 

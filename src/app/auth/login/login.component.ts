@@ -44,9 +44,12 @@ export class LoginComponent implements OnInit {
         return result;
         this.username = '';
         this.password = '';
-      }, error1 => {
+      }, (error1: Response) => {
+        console.log(error1);
         this.loginFaield = true;
         this.loginFailedNumber++;
+        console.log(this.loginFailedNumber);
+
       });
 
   }

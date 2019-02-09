@@ -22,19 +22,19 @@ import {CreateDeviceComponent} from './panel/pagecontent/devices/create-device/c
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DeviceComponent} from './panel/pagecontent/devices/device/device.component';
 import {DeviceMainComponent} from './panel/pagecontent/devices/device-main/device-main.component';
-import { DeviceListComponent } from './panel/pagecontent/devices/device-list/device-list.component';
-import { TypesMainComponent } from './panel/pagecontent/types/types-main/types-main.component';
-import { LocationsMainComponent } from './panel/pagecontent/locations/locations-main/locations-main.component';
-import { LocationCreateComponent } from './panel/pagecontent/locations/location-create/location-create.component';
-import { TypeCreateComponent } from './panel/pagecontent/types/type-create/type-create.component';
-import { TypeComponent } from './panel/pagecontent/types/type/type.component';
-import { LocationComponent } from './panel/pagecontent/locations/location/location.component';
-import { LocationsListComponent } from './panel/pagecontent/locations/locations-list/locations-list.component';
-import { TypeListComponent } from './panel/pagecontent/types/type-list/type-list.component';
+import {DeviceListComponent} from './panel/pagecontent/devices/device-list/device-list.component';
+import {TypesMainComponent} from './panel/pagecontent/types/types-main/types-main.component';
+import {LocationsMainComponent} from './panel/pagecontent/locations/locations-main/locations-main.component';
+import {LocationCreateComponent} from './panel/pagecontent/locations/location-create/location-create.component';
+import {TypeCreateComponent} from './panel/pagecontent/types/type-create/type-create.component';
+import {TypeComponent} from './panel/pagecontent/types/type/type.component';
+import {LocationComponent} from './panel/pagecontent/locations/location/location.component';
+import {LocationsListComponent} from './panel/pagecontent/locations/locations-list/locations-list.component';
+import {TypeListComponent} from './panel/pagecontent/types/type-list/type-list.component';
 import {ErrorInterceptor} from './services/Interceptors/error-interceptor';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './services/Interceptors/auth-interceptor';
-import { LogoutComponent } from './auth/logout/logout.component';
+import {LogoutComponent} from './auth/logout/logout.component';
 import {AuthenticationService} from './services/Auth/authentication.service';
 import {ApiService} from './services/API/api.service';
 
@@ -80,8 +80,10 @@ import {ApiService} from './services/API/api.service';
     AuthenticationService,
     ApiService,
     {provide: APP_BASE_HREF, useValue: '/'},
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
-    ]
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+
+  ]
   , bootstrap: [AppComponent]
 })
 export class AppModule { }

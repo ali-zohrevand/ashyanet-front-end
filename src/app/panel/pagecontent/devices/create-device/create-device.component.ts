@@ -46,6 +46,8 @@ export class CreateDeviceComponent implements OnInit {
   command_value: string;
   command_dsc: string;
   constructor(private apiServices: ApiService) {
+    this.types = [];
+    this.locations = [];
     this.IsFormValid = true;
     this.IsPredataLoaded = false;
     this.deviceCommand = new DeviceCommand();
@@ -62,14 +64,7 @@ export class CreateDeviceComponent implements OnInit {
     this.deviceKey = 'GetdeviceKey';
     this.basePathToAddTopicAddress = '/serverId/UserName';
     this.ArrayPublishTopicAddress = [];
-    const l1 = new Location('', 'خانه', 'home', '', null, '', '', '', null);
-    const l2 = new Location('', 'اتاق', 'room', '', null, '', '', '', null);
-    const t1 = new Types();
-    t1.Name = 'light';
-    const t2 = new Types();
-    t2.Name = 'moveMent';
-    this.locations = [l1, l2]; // TODO: Get Location from api
-    this.types = [t1, t2]; // TODO: Get Types From api
+
   }
 
   ngOnInit() {
@@ -98,6 +93,26 @@ export class CreateDeviceComponent implements OnInit {
         this.IsPredataLoaded = false;
       }
     );
+    this.apiServices.getApi('types').subscribe(
+      (types: Types[]) => {
+        this.types = types;
+      },
+      (error: Response) => {
+        this.IsPredataLoaded = false;
+
+      }
+    );
+    this.apiServices.getApi('location').subscribe(
+      (locations: Location[]) => {
+        this.locations = locations;
+
+      },
+      (error: Response) => {
+        this.IsPredataLoaded = false;
+
+
+      }
+    );
   }
 
 
@@ -105,8 +120,6 @@ export class CreateDeviceComponent implements OnInit {
 
   advanceConfigChecked() {
     this.advanceConfig = !this.advanceConfig;
-    console.log('Checked');
-    console.log(this.advanceConfig);
   }
 
   onSubmit(form: NgForm) {
