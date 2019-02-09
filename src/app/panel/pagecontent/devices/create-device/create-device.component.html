@@ -130,7 +130,8 @@
                   </div>
                 </div>
 
-                <button *ngIf="!advanceConfig" class="btn btn-success" style="float: left" type="submit">ایجاد
+                <button *ngIf="!advanceConfig" class="btn btn-success" style="float: left" type="submit" [disabled]="!createForm.valid ||
+                !IsFormValid || !IsPredataLoaded">ایجاد
                   دستگاه
                 </button>
 
@@ -470,7 +471,9 @@
                   </table>
                   <div class="help-block" style="color: blue;text-align: center" *ngIf="!createForm.valid && createForm.submitted"> لطفا به پیغام های خطا توجه کنید. تشکر. </div>
 
-                  <button class="btn btn-success" style="float: left" type="submit">ایجاد دستگاه</button>
+                  <button class="btn btn-success" style="float: left" type="submit"
+                          [disabled]="!IsFormValid || !IsPredataLoaded || !createForm.valid">ایجاد دستگاه
+                  </button>
                 </div>
               </div>
             </form>

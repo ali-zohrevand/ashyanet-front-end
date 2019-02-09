@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Device} from '../../../../models/device/device';
 import {Location} from '../../../../models/Locations/location';
@@ -7,6 +7,7 @@ import {DeviceCommand} from '../../../../models/device/device-command';
 import {DeviceData} from '../../../../models/device/device-data';
 import {ApiService} from '../../../../services/API/api.service';
 import {Info} from '../../../../models/Info/info';
+import {Key} from '../../../../models/key/key';
 
 @Component({
   selector: 'app-create-device',
@@ -15,11 +16,13 @@ import {Info} from '../../../../models/Info/info';
 })
 export class CreateDeviceComponent implements OnInit {
   @ViewChild('formRegister') createForm: NgForm;
-   device: Device;
+  IsFormValid: boolean;
+  IsPredataLoaded: boolean;
+  device: Device;
   dataError: string;
   dataName: string;
   totalSection = 6;
-  advanceConfig = true;
+  advanceConfig = false;
   deviceName: string;
   deviceOwnerName: string;
   deviceKey: string;
@@ -43,6 +46,8 @@ export class CreateDeviceComponent implements OnInit {
   command_value: string;
   command_dsc: string;
   constructor(private apiServices: ApiService) {
+    this.IsFormValid = true;
+    this.IsPredataLoaded = false;
     this.deviceCommand = new DeviceCommand();
     this.command_address = '';
     this.command_name = '';
@@ -73,14 +78,26 @@ export class CreateDeviceComponent implements OnInit {
         console.log(value);
       }
     );*/
-/*this.apiServices.getApi('info').subscribe(
-  (info) => {
-    this.basePathToAddTopicAddress=
+    this.apiServices.getApi('info').subscribe(
+      (info: Info) => {
+        this.basePathToAddTopicAddress = info.topic_root_path;
+        this.deviceOwnerName = info.username;
+        this.IsPredataLoaded = true;
   },
   (errorResponse: Response) => {
-
+    this.IsPredataLoaded = false;
   }
-);*/
+    );
+    this.apiServices.getApi('key').subscribe(
+      (key: Key) => {
+        this.deviceKey = key.key;
+        this.IsPredataLoaded = true;
+
+      },
+      (error: Response) => {
+        this.IsPredataLoaded = false;
+      }
+    );
   }
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Device} from '../../../../models/device/device';
 import {ApiService} from '../../../../services/API/api.service';
 
@@ -18,14 +18,13 @@ export class DeviceListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.api.getApi('devices').subscribe((Devices) => {});
-/*    this.api.getApi('devices').subscribe(
-      (reponse => {
+    this.api.getApi('devices').subscribe(
+      ((reponse: Device[]) => {
         this.errorHapened = false;
         if (reponse.length > 0 ) {
           this.devices = reponse;
         }
-        console.log(this.devices);
+        //   console.log(this.devices);
         console.log(reponse);
       }), (error: Response) => {
           this.errorHapened = true;
@@ -33,7 +32,7 @@ export class DeviceListComponent implements OnInit {
           this.notAccess = true;
           }
       }
-    );*/
+    );
   }
 
 }
