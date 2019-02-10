@@ -19,6 +19,9 @@ import {TypeListComponent} from './panel/pagecontent/types/type-list/type-list.c
 import {LocationsListComponent} from './panel/pagecontent/locations/locations-list/locations-list.component';
 import {LoginGaurd} from './services/guard/login-gaurd.service';
 import {LogoutComponent} from './auth/logout/logout.component';
+import {MainComponent} from './panel/pagecontent/main/main.component';
+import {resolve} from 'q';
+import {DeviceResolve} from './panel/pagecontent/devices/resolve/device-resolve';
 
 const routes: Routes = [
   {path: '', redirectTo: '/panel', pathMatch: 'full'},
@@ -30,9 +33,10 @@ const routes: Routes = [
 
   {
     path: 'panel', component: PanelComponent , canActivate : [LoginGaurd], children: [
+      {path: '', component: MainComponent},
       {
         path: 'devices', component: DeviceMainComponent, children: [
-          {path: '', component: DeviceListComponent},
+          {path: '', component: DeviceListComponent , resolve: {devicesList: DeviceResolve}},
           {path: 'create', component: CreateDeviceComponent},
           {
             path: 'types', component: TypesMainComponent, children: [

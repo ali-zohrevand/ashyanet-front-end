@@ -37,6 +37,9 @@ import {AuthInterceptor} from './services/Interceptors/auth-interceptor';
 import {LogoutComponent} from './auth/logout/logout.component';
 import {AuthenticationService} from './services/Auth/authentication.service';
 import {ApiService} from './services/API/api.service';
+import { MainComponent } from './panel/pagecontent/main/main.component';
+import {DeviceResolve} from './panel/pagecontent/devices/resolve/device-resolve';
+import {DevicesService} from './models/device/devices.service';
 
 @NgModule({
   declarations: [
@@ -68,6 +71,7 @@ import {ApiService} from './services/API/api.service';
     LocationsListComponent,
     TypeListComponent,
     LogoutComponent,
+    MainComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,6 +83,8 @@ import {ApiService} from './services/API/api.service';
   providers: [
     AuthenticationService,
     ApiService,
+    DevicesService,
+    DeviceResolve,
     {provide: APP_BASE_HREF, useValue: '/'},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}

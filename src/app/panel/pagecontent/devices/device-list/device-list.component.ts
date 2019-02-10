@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Device} from '../../../../models/device/device';
 import {ApiService} from '../../../../services/API/api.service';
+import {DevicesService} from '../../../../models/device/devices.service';
+import {DeviceResolve} from '../resolve/device-resolve';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-device-list',
@@ -11,28 +14,17 @@ export class DeviceListComponent implements OnInit {
    devices: Device[];
    errorHapened: boolean;
    notAccess: boolean;
-  constructor(private api: ApiService) {
-    this.errorHapened = true;
+  constructor(private deviceAPi: DevicesService, private route: ActivatedRoute) {
+    this.errorHapened = false;
     this.notAccess = false;
     this.devices = [];
   }
 
   ngOnInit() {
-    this.api.getApi('devices').subscribe(
-      ((reponse: Device[]) => {
-        this.errorHapened = false;
-        if (reponse.length > 0 ) {
-          this.devices = reponse;
-        }
-        //   console.log(this.devices);
-        console.log(reponse);
-      }), (error: Response) => {
-          this.errorHapened = true;
-          if (error.status === 401) {
-          this.notAccess = true;
-          }
-      }
-    );
+      this.devices = this.route.snapshot.data.devicesList;
+    this.notAccess = this.deviceAPi.errorHapened;
+    console.log(this.devices);
+
   }
 
 }

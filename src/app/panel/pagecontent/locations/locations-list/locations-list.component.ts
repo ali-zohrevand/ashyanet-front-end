@@ -12,6 +12,7 @@ export class LocationsListComponent implements OnInit {
   locations: Location[];
 
   constructor(private apiServcies: ApiService) {
+    this.locations = [];
   }
 
   ngOnInit() {
@@ -22,7 +23,13 @@ export class LocationsListComponent implements OnInit {
 
       },
       (error: Response) => {
-        this.errorHapened = true;
+        if (error.status === 404) {
+          this.locations = [];
+          this.errorHapened = false;
+        } else {
+          this.errorHapened = true;
+
+        }
 
 
       }
