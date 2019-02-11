@@ -1,30 +1,47 @@
 import {Injectable, OnInit} from '@angular/core';
 import {Device} from './device';
 import {ApiService} from '../../services/API/api.service';
+import {Observable, Observer} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DevicesService  implements OnInit {
   devices: Device[];
+  deviceObser: Observable<Device[]>;
   public errorHapened: boolean;
   notAccess: boolean;
   n;
   constructor(private ApiServices: ApiService) {
+
     this.devices = [];
   }
-  ngOnInit(): void {
 
+  ngOnInit() {
+    this.deviceObser = new Observable((observer: Observer<Device[]>) => {
+      this.ApiServices.getApi('devices').subscribe(
+        ((deivces: Device[]) => {
+          console.log(deivces);
+          observer.next(deivces);
+          //   console.log(this.devicesObservable);
+        }), (error: Response) => {
+          observer.error(error);
+        }
+      );
+    });
   }
   getDevices(): Device[] {
     this.ApiServices.getApi('devices').subscribe(
-      ((reponse: Device[]) => {
-        this.devices = reponse;
-        //   console.log(this.devices);
+      ((deivces: Device[]) => {
+        console.log(deivces);
+        return deivces;
       }), (error: Response) => {
-        this.errorHapened = true;
       }
     );
     return this.devices;
+  }
+
+  getDeviceObservable(): Observable<object> {
+    return this.ApiServices.getApi('devices');
   }
 }

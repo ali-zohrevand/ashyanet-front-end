@@ -17,7 +17,7 @@ var CanvasRenderer = function (el, options) {
 
   canvas.width = canvas.height = options.size;
 
-  // canvas on retina devices
+  // canvas on retina devicesObservable
   var scaleBy = 1;
   if (window.devicePixelRatio > 1) {
     scaleBy = window.devicePixelRatio;

@@ -7,19 +7,18 @@
 
       <div class="clearfix"></div>
     </div>
-    <div class="x_content">
-      <p *ngIf="errorHapened && !notAccess" style="text-align: center" class="text-muted font-13 m-b-30">
-        متاسفانه خطایی رخ داده است. لطفا بعدا مراجعه نمایید.
-      </p>
-      <p *ngIf="notAccess" style="text-align: center" class="text-muted font-13 m-b-30">
-        هم اکنون مجوز دسترسی به این بخش ندارید.
-      </p>
-      <p *ngIf="devices.length>0 && !errorHapened" class="text-muted font-13 m-b-30">
-در این بخش همه ی دستگاه های متعلق به شما قابل ملاحظه است.
-        <a class="btn btn-default" routerLink="/panel/devices/create"> می توانید دستگاه جدید نیز بسازید.</a>
+    <p *ngIf="errorHapened && !notAccess" class="text-muted font-13 m-b-30" style="text-align: center">
+      متاسفانه خطایی رخ داده است. لطفا بعدا مراجعه نمایید.
+    </p>
 
-      </p>
-      <table *ngIf="devices.length>0" id="datatable-fixed-header" class="table table-striped table-bordered">
+    <p *ngIf="deviceHasData && !errorHapened" class="text-muted font-13 m-b-30">
+      در این بخش همه ی دستگاه های متعلق به شما قابل ملاحظه است.
+      <a class="btn btn-default" routerLink="/panel/devices/create"> می توانید دستگاه جدید نیز بسازید.</a>
+
+    </p>
+    <div class="x_content">
+
+      <table *ngIf="deviceHasData" class="table table-striped table-bordered" id="datatable-fixed-header">
         <thead>
         <tr >
           <th></th>
@@ -46,7 +45,7 @@
         </tr>
         </tbody>
       </table>
-      <p   *ngIf="devices.length===0 &&  !errorHapened" class="text-muted font-13 m-b-30">
+      <p *ngIf="!deviceHasData &&  !errorHapened" class="text-muted font-13 m-b-30">
         دستگاهی برای نمایش وجود ندارد.
         <a class="btn btn-default" routerLink="/panel/devices/create"> می توانید دستگاه جدید رو بسازید.</a>
       </p>

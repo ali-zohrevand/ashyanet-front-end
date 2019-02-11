@@ -546,14 +546,14 @@ temporary rendered events).
   z-index: 2;
 }
 
-/* resizer (cursor AND touch devices) */
+/* resizer (cursor AND touch devicesObservable) */
 
 .fc-event .fc-resizer {
   position: absolute;
   z-index: 4;
 }
 
-/* resizer (touch devices) */
+/* resizer (touch devicesObservable) */
 
 .fc-event .fc-resizer {
   display: none;
@@ -581,7 +581,7 @@ temporary rendered events).
 }
 
 
-/* Event Selection (only for touch devices)
+/* Event Selection (only for touch devicesObservable)
 --------------------------------------------------------------------------------------------------*/
 
 .fc-event.fc-selected {
@@ -628,7 +628,7 @@ temporary rendered events).
   border-bottom-right-radius: 0;
 }
 
-/* resizer (cursor AND touch devices) */
+/* resizer (cursor AND touch devicesObservable) */
 
 /* left resizer  */
 .fc-ltr .fc-h-event .fc-start-resizer,
@@ -644,7 +644,7 @@ temporary rendered events).
   right: -1px; /* overcome border */
 }
 
-/* resizer (mouse devices) */
+/* resizer (mouse devicesObservable) */
 
 .fc-h-event.fc-allow-mouse-resize .fc-resizer {
   width: 7px;
@@ -652,7 +652,7 @@ temporary rendered events).
   bottom: -1px; /* overcome bottom border */
 }
 
-/* resizer (touch devices) */
+/* resizer (touch devicesObservable) */
 
 .fc-h-event.fc-selected .fc-resizer {
   /* 8x8 little dot */
@@ -716,7 +716,7 @@ be a descendant of the grid when it is being dragged.
   font-weight: bold;
 }
 
-/* resizer (cursor devices) */
+/* resizer (cursor devicesObservable) */
 
 /* left resizer  */
 .fc-ltr .fc-day-grid-event.fc-allow-mouse-resize .fc-start-resizer,

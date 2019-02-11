@@ -3671,7 +3671,7 @@
 
     // Kills all in-progress dragging.
     // Useful for when public API methods that result in re-rendering are invoked during a drag.
-    // Also useful for when touch devices misbehave and don't fire their touchend.
+    // Also useful for when touch devicesObservable misbehave and don't fire their touchend.
     clearDragListeners: function () {
       this.dayDragListener.endInteraction();
 

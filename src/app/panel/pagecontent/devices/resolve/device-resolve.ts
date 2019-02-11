@@ -1,15 +1,25 @@
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 import {DevicesService} from '../../../../models/device/devices.service';
 import {Device} from '../../../../models/device/device';
-import {ApiService} from '../../../../services/API/api.service';
-import {Injectable} from '@angular/core';
-@Injectable()
-export class DeviceResolve implements Resolve<any> {
+import {Injectable, OnInit} from '@angular/core';
+import {Observable} from 'rxjs';
 
+@Injectable()
+export class DeviceResolve implements OnInit, Resolve<Observable<object>> {
   constructor(private ApiServices: DevicesService) {
   }
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Device[] {
 
-    return this.ApiServices.getDevices();
+  device: Device[];
+  deviceObser: Observable<object>;
+
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<object> {
+    this.deviceObser = this.ApiServices.getDeviceObservable();
+    console.log(this.deviceObser);
+    return this.deviceObser;
   }
+
+  ngOnInit(): void {
+
+  }
+
 }
