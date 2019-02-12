@@ -1,6 +1,6 @@
 <div class="page-title">
   <div class="title_left">
-    <h3>عناصر فرم</h3>
+    <h3>موقعیت مکانی</h3>
   </div>
 
 </div>
@@ -9,14 +9,14 @@
   <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
       <div class="x_title">
-        <h2>طرح فرم
+        <h2>ایجاد موقعیت مکانی جدید
         </h2>
 
         <div class="clearfix"></div>
       </div>
       <div class="x_content">
         <br/>
-        <form id="createLocation" #createLocatioN="ngForm" data-parsley-validate class="form-horizontal form-label-left">
+        <form id="createLocation" (submit)="createLocationSubmit()" #createLocation="ngForm" data-parsley-validate class="form-horizontal form-label-left">
 
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="LocationDisplayName">نام مکان
@@ -24,23 +24,28 @@
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input type="text" id="LocationDisplayName" required
-                     class="form-control col-md-7 col-xs-12" name="LocationDisplayName" [(ngModel)]="LocationDisplayName" #LocationDisplayNameElement="ngModel">
+                     class="form-control col-md-7 col-xs-12" name="LocationDisplayName" [(ngModel)]="locationObj.display_name" #LocationDisplayNameElement="ngModel">
             </div>
+            <div class="help-block" style="color: red" *ngIf="!LocationDisplayNameElement.valid && LocationDisplayNameElement.touched "> لطفا نام موقعیت مکانی را وارد نمایید.</div>
+
           </div>
           <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="locationCode">کد مکان
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="locationCode">نام انگلیسی مکان
               <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="locationCode" [(ngModel)]="locationCode" required #locationCodeElement ="ngModel" name="locationCode"
-                     class="form-control col-md-7 col-xs-12">
+              <input type="text" id="locationCode" [(ngModel)]="locationObj.locationname" required #locationCodeElement ="ngModel" name="locationCode"
+                     class="form-control col-md-7 col-xs-12" placeholder="برای مثال: Home ">
             </div>
+            <div class="help-block" style="color: red" *ngIf="!locationCodeElement.valid && locationCodeElement.touched "> لطفانام انگلیسی مکان را وارد نمایید.</div>
+            <div class="help-block" style="color: red" *ngIf="LocationCodNameIsNotEnglish && locationCodeElement.valid">تنها حروف و اعداد انگلیسی مجاز است.</div>
+
           </div>
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="ParentLocation"> والد مکان
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="ParentLocation"  name="ParentLocation" [(ngModel)]="ParentLocation"
+              <input type="text" id="ParentLocation"  name="ParentLocation" [(ngModel)]="locationObj.parent"
                      placeholder="اگر مکان شما در مکان دیگری که قبلا تعریف شده است. نام آن مکان را درج نمایید."
                      class="form-control col-md-7 col-xs-12">
             </div>
@@ -49,7 +54,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Longtitude">طول جغرافیایی
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="Longtitude" name="Longtitude" [(ngModel)]="Longtitude"
+              <input type="text" id="Longtitude" name="Longtitude" [(ngModel)]="locationObj.longitude"
                      class="form-control col-md-7 col-xs-12">
             </div>
           </div>
@@ -57,7 +62,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Latitude">عرض جغرافیایی
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="Latitude" [(ngModel)]="Latitude" name="Latitude"
+              <input type="text" id="Latitude" [(ngModel)]="locationObj.latitude" name="Latitude"
                      class="form-control col-md-7 col-xs-12">
             </div>
           </div>
@@ -65,7 +70,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Dsc">توضیحات
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" id="Dsc" [(ngModel)]="Dsc" name="Dsc"
+              <input type="text" id="Dsc" [(ngModel)]="locationObj.dsc" name="Dsc"
                      class="form-control col-md-7 col-xs-12">
             </div>
           </div>
@@ -74,9 +79,12 @@
           <div class="ln_solid"></div>
           <div class="form-group">
             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-              <button type="submit"  style="float: left" class="btn btn-success">ایجاد موقعیت مکانی</button>
+              <button type="submit"  [disabled]="!createForm.valid" style="float: left" class="btn btn-success">ایجاد موقعیت مکانی</button>
             </div>
           </div>
+          <div *ngIf="SubmitStatus" class="successSubmit">موقعیت مکانی با موفقیت ایجاد شد.</div>
+          <div *ngIf="!SubmitStatus && locationExist" class="failedSubmit"> موقعیت مکانی وجود دارد.</div>
+          <div *ngIf="!SubmitStatus && createForm.submitted" class="failedSubmit">خطایی رخ داده. لطفا بعدا امتحان کنید.</div>
 
         </form>
       </div>

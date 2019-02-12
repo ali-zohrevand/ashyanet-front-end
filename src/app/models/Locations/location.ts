@@ -9,4 +9,6 @@ export class Location {
   public longitude: string;
   public users: string[];
 
+  constructor() {
+  }
 }

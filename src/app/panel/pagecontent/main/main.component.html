@@ -37,7 +37,8 @@
               <div class="tile-stats">
                 <div class="icon"><i class="fa fa-map-marker"></i>
                 </div>
-                <div class="count">{{LocaionNumber}}</div>
+                <div *ngIf="LocaionNumber" class="count">{{LocaionNumber}}</div>
+                <div *ngIf="!LocaionNumber" class="count">0</div>
 
                 <h3>موقعیت مکانی</h3>
                 <p> <a routerLink="/panel/locations">لیست موقعیت های مکانی </a> </p>

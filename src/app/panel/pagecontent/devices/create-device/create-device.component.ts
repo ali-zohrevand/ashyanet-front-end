@@ -45,6 +45,8 @@ export class CreateDeviceComponent implements OnInit {
   command_name: string;
   command_value: string;
   command_dsc: string;
+  LocationEmpty: boolean;
+  TypesEmpty: boolean;
   constructor(private apiServices: ApiService) {
     this.types = [];
     this.locations = [];
@@ -64,10 +66,13 @@ export class CreateDeviceComponent implements OnInit {
     this.deviceKey = 'GetdeviceKey';
     this.basePathToAddTopicAddress = '/serverId/UserName';
     this.ArrayPublishTopicAddress = [];
+    this.LocationEmpty = true;
+    this.TypesEmpty = true;
 
   }
 
   ngOnInit() {
+
  /*   this.createForm.valueChanges.subscribe(
       (value ) => {
         console.log(value);
@@ -77,7 +82,9 @@ export class CreateDeviceComponent implements OnInit {
       (info: Info) => {
         this.basePathToAddTopicAddress = info.topic_root_path;
         this.deviceOwnerName = info.username;
-        this.IsPredataLoaded = true;
+        if (this.deviceOwnerName !== 'GetdeviceOwnerName'){
+          this.IsPredataLoaded = true;
+        }
   },
   (errorResponse: Response) => {
     this.IsPredataLoaded = false;
@@ -86,7 +93,10 @@ export class CreateDeviceComponent implements OnInit {
     this.apiServices.getApi('key').subscribe(
       (key: Key) => {
         this.deviceKey = key.key;
-        this.IsPredataLoaded = true;
+        if (this.deviceKey !==  'GetdeviceKey' ) {
+          this.IsPredataLoaded = true;
+
+        }
 
       },
       (error: Response) => {
@@ -95,7 +105,11 @@ export class CreateDeviceComponent implements OnInit {
     );
     this.apiServices.getApi('types').subscribe(
       (types: Types[]) => {
-        this.types = types;
+      this.types = types;
+      if (this.types.length > 0) {
+        this.TypesEmpty = false;
+
+      }
       },
       (error: Response) => {
         this.IsPredataLoaded = false;
@@ -104,8 +118,11 @@ export class CreateDeviceComponent implements OnInit {
     );
     this.apiServices.getApi('location').subscribe(
       (locations: Location[]) => {
-        this.locations = locations;
 
+        this.locations = locations;
+        if (this.locations.length > 0) {
+          this.LocationEmpty = false;
+        }
       },
       (error: Response) => {
         this.IsPredataLoaded = false;
@@ -113,6 +130,7 @@ export class CreateDeviceComponent implements OnInit {
 
       }
     );
+
   }
 
 

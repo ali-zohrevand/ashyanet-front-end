@@ -4,6 +4,7 @@ import {Location} from '../../../models/Locations/location';
 import {Device} from '../../../models/device/device';
 import {DevicesService} from '../../../models/device/devices.service';
 import {LocationsService} from '../../../models/Locations/locations.service';
+import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 @Component({
   selector: 'app-main',
@@ -22,10 +23,22 @@ export class MainComponent implements OnInit {
   ngOnInit() {
 
     this.deviceApi.getDeviceObservable().subscribe((d: Device[]) => {
-      this.deviceNumber = d.length;
+      if (d === null) {
+        this.deviceNumber = 0;
+
+      } else {
+        this.deviceNumber = d.length;
+
+      }
     });
     this.LocationService.getLocationObservable().subscribe((l: Location[]) => {
-      this.LocaionNumber = l.length;
+      if (l === null) {
+        this.LocaionNumber = 0;
+
+      } else {
+        this.LocaionNumber = l.length;
+
+      }
     });
   }
 

@@ -37,6 +37,29 @@ export class ApiService {
     return this.httpClient.get(this.baseUrl + apiPath);
 
   }
+  postApi(path: string, PostBody: object) {
+    let apiPath = '';
+    switch (path) {
+      case 'devices':
+        apiPath = this.devicesLisPAth;
+        break;
+      case 'info':
+        apiPath = this.infoPath;
+        break;
+      case 'key':
+        apiPath = this.kePath;
+        break;
+      case 'location':
+        apiPath = this.locationPath;
+        break;
+      case 'types':
+        apiPath = this.typesPath;
+        break;
+      default:
+        break;
+    }
+    return this.httpClient.post(this.baseUrl + apiPath, PostBody);
 
+  }
 
 }

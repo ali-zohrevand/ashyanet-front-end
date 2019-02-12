@@ -7,7 +7,6 @@
   <div class="clearfix"></div>
 
   <div class="row">
-
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div class="x_panel">
         <div class="x_title">
@@ -17,16 +16,17 @@
         </div>
         <div class="x_content">
           <div>
-            <p *ngIf="locations.length===0">
+            <p *ngIf="LocationEmpty">
               شما هنوز مکانی تعریف نکرده اید. برای ایجاد دستگاه می بایست مکانی تعریف نمایید.
               <a class="btn btn-default" routerLink="/panel/locations/create"> مکان جدید بسازید.</a>
             </p>
-            <p *ngIf="types.length===0">
+            <p *ngIf="TypesEmpty">
               نوع دستگاه جدیدی وجود ندارد.
               <a class="btn btn-default" routerLink="/panel/devices/types/create"> نوع دستگاه جدید بسازید.</a>
 
             </p>
           </div>
+
           <!-- Smart Wizard -->
           <div class="form_wizard wizard_horizontal" id="wizard">
 

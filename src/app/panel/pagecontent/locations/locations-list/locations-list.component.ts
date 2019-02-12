@@ -18,8 +18,11 @@ export class LocationsListComponent implements OnInit {
 
   ngOnInit() {
     this.locations = this.route.snapshot.data.locations;
+    console.log(this.locations);
     if (this.locations === null) {
-      this.HasLocationData = true;
+      this.HasLocationData = false;
+    }else {
+      this.HasLocationData=true;
     }
   }
 

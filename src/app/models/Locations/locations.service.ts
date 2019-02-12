@@ -11,4 +11,7 @@ export class LocationsService {
   getLocationObservable(): Observable<object> {
     return this.apiService.getApi('location');
   }
+  PostLocationObservable(body: object): Observable<object> {
+    return this.apiService.postApi('location', body);
+  }
 }
