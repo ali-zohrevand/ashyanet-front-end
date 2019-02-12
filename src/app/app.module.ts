@@ -38,8 +38,12 @@ import {LogoutComponent} from './auth/logout/logout.component';
 import {AuthenticationService} from './services/Auth/authentication.service';
 import {ApiService} from './services/API/api.service';
 import { MainComponent } from './panel/pagecontent/main/main.component';
-import {DeviceResolve} from './panel/pagecontent/devices/resolve/device-resolve';
+import {DeviceResolve} from './models/device/device-resolve';
 import {DevicesService} from './models/device/devices.service';
+import {LocationsService} from './models/Locations/locations.service';
+import {TypseService} from './models/Types/typse.service';
+import {TypesResolve} from './models/Types/types-resolve';
+import {LocationsResolve} from './models/Locations/locations-resolve';
 
 @NgModule({
   declarations: [
@@ -85,6 +89,10 @@ import {DevicesService} from './models/device/devices.service';
     ApiService,
     DevicesService,
     DeviceResolve,
+    LocationsService,
+    TypseService,
+    TypesResolve,
+    LocationsResolve,
     {provide: APP_BASE_HREF, useValue: '/'},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}

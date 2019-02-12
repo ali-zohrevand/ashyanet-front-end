@@ -21,7 +21,9 @@ import {LoginGaurd} from './services/guard/login-gaurd.service';
 import {LogoutComponent} from './auth/logout/logout.component';
 import {MainComponent} from './panel/pagecontent/main/main.component';
 import {resolve} from 'q';
-import {DeviceResolve} from './panel/pagecontent/devices/resolve/device-resolve';
+import {DeviceResolve} from './models/device/device-resolve';
+import {TypesResolve} from './models/Types/types-resolve';
+import {LocationsResolve} from './models/Locations/locations-resolve';
 
 const routes: Routes = [
   {path: '', redirectTo: '/panel', pathMatch: 'full'},
@@ -40,7 +42,7 @@ const routes: Routes = [
           {path: 'create', component: CreateDeviceComponent},
           {
             path: 'types', component: TypesMainComponent, children: [
-              {path: '', component: TypeListComponent},
+              {path: '', component: TypeListComponent, resolve: {types: TypesResolve}},
               {path: 'create', component: TypeCreateComponent},
               {path: ':id', component: TypeComponent}
             ]
@@ -49,7 +51,7 @@ const routes: Routes = [
         ]   },
       {
         path: 'locations', component: LocationsMainComponent, children: [
-          { path: '', component: LocationsListComponent},
+          { path: '', component: LocationsListComponent,  resolve: {locations: LocationsResolve}},
           {path: 'create', component: LocationCreateComponent },
           {path: ':id' , component: LocationComponent}
         ]

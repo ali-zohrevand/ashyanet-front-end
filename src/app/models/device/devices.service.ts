@@ -1,14 +1,14 @@
 import {Injectable, OnInit} from '@angular/core';
 import {Device} from './device';
 import {ApiService} from '../../services/API/api.service';
-import {Observable, Observer} from 'rxjs';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DevicesService  implements OnInit {
   devices: Device[];
-  deviceObser: Observable<Device[]>;
+  // deviceObser: Observable<Device[]>;
   public errorHapened: boolean;
   notAccess: boolean;
   n;
@@ -18,7 +18,7 @@ export class DevicesService  implements OnInit {
   }
 
   ngOnInit() {
-    this.deviceObser = new Observable((observer: Observer<Device[]>) => {
+   /* this.deviceObser = new Observable((observer: Observer<Device[]>) => {
       this.ApiServices.getApi('devices').subscribe(
         ((deivces: Device[]) => {
           console.log(deivces);
@@ -28,7 +28,7 @@ export class DevicesService  implements OnInit {
           observer.error(error);
         }
       );
-    });
+    });*/
   }
   getDevices(): Device[] {
     this.ApiServices.getApi('devices').subscribe(

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ApiService} from '../../../../services/API/api.service';
 import {Location} from '../../../../models/Locations/location';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-locations-list',
@@ -10,30 +10,17 @@ import {Location} from '../../../../models/Locations/location';
 export class LocationsListComponent implements OnInit {
   errorHapened: boolean;
   locations: Location[];
-
-  constructor(private apiServcies: ApiService) {
+  HasLocationData: boolean;
+  constructor(private route: ActivatedRoute) {
     this.locations = [];
+    this.HasLocationData = false;
   }
 
   ngOnInit() {
-    this.apiServcies.getApi('location').subscribe(
-      (locations: Location[]) => {
-        this.locations = locations;
-        this.errorHapened = false;
-
-      },
-      (error: Response) => {
-        if (error.status === 404) {
-          this.locations = [];
-          this.errorHapened = false;
-        } else {
-          this.errorHapened = true;
-
-        }
-
-
-      }
-    );
+    this.locations = this.route.snapshot.data.locations;
+    if (this.locations === null) {
+      this.HasLocationData = true;
+    }
   }
 
 }

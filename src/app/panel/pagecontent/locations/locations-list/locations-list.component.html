@@ -11,12 +11,12 @@
         متاسفانه خطایی رخ داده است. لطفا بعدا مراجعه نمایید.
       </p>
 
-      <p *ngIf="locations.length>0 && !errorHapened" class="text-muted font-13 m-b-30">
+      <p *ngIf="HasLocationData && !errorHapened" class="text-muted font-13 m-b-30">
         در این بخش همه ی موقعیت های متعلق به شما قابل ملاحظه است.
         <a class="btn btn-default" routerLink="/panel/locations/create"> می توانید مکان جدید نیز بسازید.</a>
 
       </p>
-      <table *ngIf="locations.length>0" id="datatable-fixed-header" class="table table-striped table-bordered">
+      <table *ngIf="HasLocationData" id="datatable-fixed-header" class="table table-striped table-bordered">
         <thead>
         <tr>
           <th></th>
@@ -60,7 +60,7 @@
         </tr>
         </tbody>
       </table>
-      <p *ngIf="locations.length===0 &&  !errorHapened" class="text-muted font-13 m-b-30">
+      <p *ngIf="!HasLocationData &&  !errorHapened" class="text-muted font-13 m-b-30">
         مکانی برای نمایش وجود ندارد.
         <a class="btn btn-default" routerLink="/panel/locations/create">میتوانید مکان جدید بسازید.</a>
       </p>

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Types} from '../../../../models/Types/types';
 import {ApiService} from '../../../../services/API/api.service';
+import {DevicesService} from '../../../../models/device/devices.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-type-list',
@@ -10,22 +12,18 @@ import {ApiService} from '../../../../services/API/api.service';
 export class TypeListComponent implements OnInit {
   types: Types[];
   errorHapened: boolean;
-
-  constructor(private apiServices: ApiService) {
+  HasTypeObject: boolean;
+  constructor( private route: ActivatedRoute) {
     this.types = [];
+    this.HasTypeObject = false;
   }
 
   ngOnInit() {
-    this.apiServices.getApi('types').subscribe(
-      (types: Types[]) => {
-        this.types = types;
-        console.log(this.types);
-      },
-      (error: Response) => {
-        this.errorHapened = true;
-
-      }
-    );
+    this.types = this.route.snapshot.data.types;
+    console.log(this.types);
+    if (this.types === null) {
+      this.HasTypeObject = true;
+    }
   }
 
 }
