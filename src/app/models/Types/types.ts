@@ -3,4 +3,5 @@ export class Types {
   name: string;
   dsc: string;
   owner: string;
+  constructor() {}
 }
