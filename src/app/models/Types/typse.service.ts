@@ -5,7 +5,6 @@ import {ApiService} from '../../services/API/api.service';
   providedIn: 'root'
 })
 export class TypseService {
-
   constructor(private apiService: ApiService) { }
   getTypseResolve() {
     return this.apiService.getApi('types');

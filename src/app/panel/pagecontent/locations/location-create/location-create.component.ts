@@ -6,6 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./location-create.component.css']
 })
 export class LocationCreateComponent implements OnInit {
+  LocationDisplayName: string;
+  locationCode: string;
+  ParentLocation: string;
+  Longtitude: string;
+  Latitude: string;
+  Dsc: string;
 
   constructor() { }
 
