@@ -21,7 +21,7 @@ export class TypeListComponent implements OnInit {
   ngOnInit() {
     this.types = this.route.snapshot.data.types;
     console.log(this.types);
-    if (this.types === null) {
+    if (this.types === null || this.types.length > 0) {
       this.HasTypeObject = true;
     }
   }

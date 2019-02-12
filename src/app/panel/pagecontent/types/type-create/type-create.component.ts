@@ -38,12 +38,10 @@ export class TypeCreateComponent implements OnInit {
             this.submitStatus = false;
             this.typeExist = true;
           }
-          this.resetPage();
       }, (error1: Response) => {
-            this.submitStatus = false;
-            this.resetPage();
       }
     );
+    this.resetPage();
 
   }
   IsEnglishWord(topicName: string) {
@@ -63,7 +61,6 @@ export class TypeCreateComponent implements OnInit {
   }
   resetPage() {
     this.typeIsnotEnglish = false;
-    this.submitStatus=false;
     this.createForm.onReset();
 
   }

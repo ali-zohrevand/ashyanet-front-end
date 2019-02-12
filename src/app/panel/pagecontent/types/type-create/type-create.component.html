@@ -48,11 +48,11 @@
               <button type="submit" [disabled]="typeIsnotEnglish || !typeElement.valid" style="float: left;" class="btn btn-success">ثبت نوع جدید</button>
             </div>
           </div>
+          <div *ngIf="submitStatus" class="successSubmit">نوع دستگاه با موفقیت ایجاد شد.</div>
+          <div *ngIf="!submitStatus && typeExist" class="failedSubmit"> نوع دستگاه وجود دارد.</div>
+          <div *ngIf="!submitStatus && createForm.submitted" class="failedSubmit">خطایی رخ داده. لطفا بعدا امتحان کنید.</div>
 
         </form>
-        <div *ngIf="typeExist && !submitStatus" class="failedSubmit">نوع دستگاه وجود دارد</div>
-        <div *ngIf="!submitStatus" class="failedSubmit">خطایی رخ داده است. مجددا امتحان کنید.</div>
-        <div *ngIf="submitStatus" class="failedSubmit">نوع دستگاه با موفقیت ایجاد شد.</div>
 
       </div>
     </div>
