@@ -149,7 +149,7 @@
 
                   </div>
                 </div>
-                <div [className]="statusClassCssLoad()" *ngIf="!advanceConfig && formRegister.submitted">{{this.statusMessage}}</div>
+                <div [className]="statusClassCssLoad()" *ngIf="!advanceConfig && formRegister.submitted">{{this.submitMessage}}</div>
 
                 <button *ngIf="!advanceConfig" class="btn btn-success" style="float: left" type="submit" [disabled]="!formRegister.valid ||
                 !IsFormValid || !IsPredataLoaded">ایجاد
@@ -495,7 +495,7 @@
                   <button class="btn btn-success" style="float: left" type="submit"
                           [disabled]="!IsFormValid || !IsPredataLoaded || !formRegister.valid">ایجاد دستگاه
                   </button>
-                  <div [className]="statusClassCssLoad()" *ngIf="advanceConfig && formRegister.submitted">{{this.statusMessage}}</div>
+                  <div [className]="statusClassCssLoad()" *ngIf="advanceConfig && formRegister.submitted">{{this.submitMessage}}</div>
 
                 </div>
               </div>
