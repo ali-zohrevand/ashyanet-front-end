@@ -8,6 +8,8 @@ import {DeviceData} from '../../../../models/device/device-data';
 import {ApiService} from '../../../../services/API/api.service';
 import {Info} from '../../../../models/Info/info';
 import {Key} from '../../../../models/key/key';
+import {DevicesService} from '../../../../models/device/devices.service';
+import {StandardMessage} from '../../../../models/ApiMessage/standard-message';
 
 @Component({
   selector: 'app-create-device',
@@ -15,30 +17,27 @@ import {Key} from '../../../../models/key/key';
   styleUrls: ['./create-device.component.css']
 })
 export class CreateDeviceComponent implements OnInit {
+  messageArray: object;
   @ViewChild('formRegister') createForm: NgForm;
+  submitterStatus: boolean;
+  submitMessage: string;
   IsFormValid: boolean;
   IsPredataLoaded: boolean;
   device: Device;
-  dataError: string;
   dataName: string;
-  totalSection = 6;
   advanceConfig = false;
-  deviceName: string;
   deviceOwnerName: string;
   deviceKey: string;
-  location: any;
-  password: any;
-  rePassword: any;
+  password: string;
+  rePassword: string;
   publishTopicName: string;
   basePathToAddTopicAddress: string;
-  ArrayPublishTopicAddress: string[];
   types: Types[];
   locations: Location[];
   subscribeTopicName: string;
   pubSubTopicName: string;
   deviceCommand: DeviceCommand;
   data_value_type: string;
-  dsc: string;
   data_dsc: string;
   data_topic: string;
   command_address: string;
@@ -47,7 +46,13 @@ export class CreateDeviceComponent implements OnInit {
   command_dsc: string;
   LocationEmpty: boolean;
   TypesEmpty: boolean;
-  constructor(private apiServices: ApiService) {
+  constructor(private apiServices: ApiService, private deviceService: DevicesService) {
+    this.messageArray = new Object();
+    this.messageArray = {
+      'error': 'خطایی رخ داده است. مجددا امتحان کنید.',
+      'success': 'دستگاه با موفقیت ایجاد شد.',
+      'DeviceExist': 'دستگاه با این نام وجود دارد.'
+    };
     this.types = [];
     this.locations = [];
     this.IsFormValid = true;
@@ -65,7 +70,6 @@ export class CreateDeviceComponent implements OnInit {
     this.deviceOwnerName = 'GetdeviceOwnerName';
     this.deviceKey = 'GetdeviceKey';
     this.basePathToAddTopicAddress = '/serverId/UserName';
-    this.ArrayPublishTopicAddress = [];
     this.LocationEmpty = true;
     this.TypesEmpty = true;
 
@@ -82,7 +86,7 @@ export class CreateDeviceComponent implements OnInit {
       (info: Info) => {
         this.basePathToAddTopicAddress = info.topic_root_path;
         this.deviceOwnerName = info.username;
-        if (this.deviceOwnerName !== 'GetdeviceOwnerName'){
+        if (this.deviceOwnerName !== 'GetdeviceOwnerName') {
           this.IsPredataLoaded = true;
         }
   },
@@ -140,8 +144,28 @@ export class CreateDeviceComponent implements OnInit {
     this.advanceConfig = !this.advanceConfig;
   }
 
-  onSubmit(form: NgForm) {
-    console.log(form);
+  onSubmit() {
+    if (this.IsFormValid && this.createForm.valid) {
+      this.device.owner.push(this.deviceOwnerName);
+      this.device.key = this.deviceKey;
+      this.device.mqtt_password = this.password;
+      this.deviceService.PostDeviceObservable(this.device).subscribe(
+        (message: StandardMessage) => {
+
+          if (message.info === 'Device Created'){
+            this.submitterStatus =true;
+            this.submitMessage = this.messageArray['success'];
+          }
+          if (message.info === 'Device Exist'){
+            this.submitterStatus =false;
+            this.submitMessage = this.messageArray['success'];
+          }
+          console.log(message);
+        }, (error: Response) => {
+          this.submitMessage = this.messageArray['error'];
+      }
+      );
+    }
   }
 
   addPublishTopicAdress() {
@@ -262,4 +286,12 @@ export class CreateDeviceComponent implements OnInit {
       return false;
     }
     return false;  }
+
+  statusClassCssLoad() {
+    if (this.submitterStatus) {
+      return 'successSubmit';
+    } else {
+      return 'failedSubmit';
+    }
+  }
 }

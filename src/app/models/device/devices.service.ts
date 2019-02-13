@@ -44,4 +44,7 @@ export class DevicesService  implements OnInit {
   getDeviceObservable(): Observable<object> {
     return this.ApiServices.getApi('devices');
   }
+  PostDeviceObservable(body: object): Observable<object> {
+    return this.ApiServices.postApi('devices', body);
+  }
 }

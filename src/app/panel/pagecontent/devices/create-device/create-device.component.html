@@ -30,7 +30,7 @@
           <!-- Smart Wizard -->
           <div class="form_wizard wizard_horizontal" id="wizard">
 
-            <form *ngIf="types.length>0 && locations.length>0" (ngSubmit)="onSubmit(formRegister)"
+            <form *ngIf="types.length>0 && locations.length>0" (ngSubmit)="onSubmit()"
                   #formRegister="ngForm">
               <div  class="form-horizontal form-label-left">
                 <div class="help-block" style="color: blue;text-align: center" *ngIf="!formRegister.valid && formRegister.submitted"> لطفا به پیغام های خطا توجه کنید. تشکر. </div>
@@ -74,7 +74,7 @@
                     <select class="form-control" [(ngModel)]="device.location" id="location" required name="location" #locationElement="ngModel">
                       <option *ngFor="let l of locations" [value]="l.locationname">
                         <div *ngIf="l.display_name===''">{{l.locationname}}</div>
-                        <div *ngIf="l.display_name!==''">{{l.display_name}}</div>
+                        <div *ngIf="l.display_name!==''">{{l.display_name}} -- {{l.locationname}}</div>
                       </option>
                     </select>
 
@@ -106,15 +106,15 @@
 
                 </div>
                 <div class="form-group">
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">رمز عبور
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password"> رمز عبور mqtt
                     <span class="required">*</span>
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                     <input class="form-control col-md-7 col-xs-12" id="password"
                            placeholder="رمز عبور را وارد نمایید."
-                           required="required" type="password" [(ngModel)]="password" name="password" #passElement="ngModel">
+                           required minlength="6" type="password" [(ngModel)]="password" name="password" #passElement="ngModel">
                   </div>
-                  <div class="help-block" style="color: red" *ngIf="!passElement.valid && passElement.touched "> لطفا رمز عبور را وارد نمایید.</div>
+                  <div class="help-block" style="color: red" *ngIf="!passElement.valid && passElement.touched "> لطفا رمز عبور را وارد نمایید. رمز عبور باید حداقل ۶ کاراکتر باشد.</div>
 
                 </div>
                 <div class="form-group">
@@ -149,6 +149,7 @@
 
                   </div>
                 </div>
+                <div [className]="statusClassCssLoad()" *ngIf="!advanceConfig && formRegister.submitted">{{this.statusMessage}}</div>
 
                 <button *ngIf="!advanceConfig" class="btn btn-success" style="float: left" type="submit" [disabled]="!formRegister.valid ||
                 !IsFormValid || !IsPredataLoaded">ایجاد
@@ -394,7 +395,7 @@
                         <a>{{cm.topic}}</a>
                       </td>
                       <td class="nowrap">
-                        <a class="btn btn-danger btn-xs" href="#"><i class="fa fa-trash-o"></i> حذف </a>
+                        <a class="btn btn-danger btn-xs"(click)="deleteCommand(i)"><i class="fa fa-trash-o"></i> حذف </a>
                       </td>
                     </tr>
 
@@ -494,6 +495,8 @@
                   <button class="btn btn-success" style="float: left" type="submit"
                           [disabled]="!IsFormValid || !IsPredataLoaded || !formRegister.valid">ایجاد دستگاه
                   </button>
+                  <div [className]="statusClassCssLoad()" *ngIf="advanceConfig && formRegister.submitted">{{this.statusMessage}}</div>
+
                 </div>
               </div>
             </form>

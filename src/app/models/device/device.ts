@@ -7,6 +7,7 @@ export class Device {
   public description: string;
   public type: string;
   public owner: string[];
+  public key:string;
   public location: string;
   public publish: string[];
   public subscribe: string[];
@@ -21,6 +22,7 @@ export class Device {
     this.pubsub = [];
     this.data = [];
     this.commands = [];
+    this.owner=[];
   }
 
   /*constructor(
