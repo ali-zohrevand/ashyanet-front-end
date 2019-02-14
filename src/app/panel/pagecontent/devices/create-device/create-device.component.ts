@@ -19,6 +19,7 @@ import {StandardMessage} from '../../../../models/ApiMessage/standard-message';
 export class CreateDeviceComponent implements OnInit {
   messageArray: object;
   @ViewChild('formRegister') createForm: NgForm;
+  loading:boolean;
   submitterStatus: boolean;
   submitMessage: string;
   IsFormValid: boolean;
@@ -50,7 +51,7 @@ export class CreateDeviceComponent implements OnInit {
     this.messageArray = new Object();
     this.messageArray = {
       'error': 'خطایی رخ داده است. مجددا امتحان کنید.',
-      'success': 'دستگاه با موفقیت ایجاد شد.',
+      'success': 'دستگاه با موفقیت ساخته شد.',
       'DeviceExist': 'دستگاه با این نام وجود دارد.'
     };
     this.types = [];
@@ -82,20 +83,33 @@ export class CreateDeviceComponent implements OnInit {
         console.log(value);
       }
     );*/
+   this.loadBasicdata();
+  }
+
+
+  loadBasicdata() {
+    this.loading = true;
+
     this.apiServices.getApi('info').subscribe(
       (info: Info) => {
+        this.loading = false;
+
         this.basePathToAddTopicAddress = info.topic_root_path;
         this.deviceOwnerName = info.username;
         if (this.deviceOwnerName !== 'GetdeviceOwnerName') {
           this.IsPredataLoaded = true;
         }
-  },
-  (errorResponse: Response) => {
-    this.IsPredataLoaded = false;
-  }
+      },
+      (errorResponse: Response) => {
+        this.loading = false;
+
+        this.IsPredataLoaded = false;
+      }
     );
     this.apiServices.getApi('key').subscribe(
       (key: Key) => {
+        this.loading = false;
+
         this.deviceKey = key.key;
         if (this.deviceKey !==  'GetdeviceKey' ) {
           this.IsPredataLoaded = true;
@@ -104,24 +118,31 @@ export class CreateDeviceComponent implements OnInit {
 
       },
       (error: Response) => {
+        this.loading = false;
+
         this.IsPredataLoaded = false;
       }
     );
     this.apiServices.getApi('types').subscribe(
       (types: Types[]) => {
-      this.types = types;
-      if (this.types.length > 0) {
-        this.TypesEmpty = false;
+        this.loading = false;
 
-      }
+        this.types = types;
+        if (this.types.length > 0) {
+          this.TypesEmpty = false;
+
+        }
       },
       (error: Response) => {
+        this.loading = false;
+
         this.IsPredataLoaded = false;
 
       }
     );
     this.apiServices.getApi('location').subscribe(
       (locations: Location[]) => {
+        this.loading = false;
 
         this.locations = locations;
         if (this.locations.length > 0) {
@@ -129,45 +150,53 @@ export class CreateDeviceComponent implements OnInit {
         }
       },
       (error: Response) => {
+        this.loading = false;
+
         this.IsPredataLoaded = false;
 
 
       }
     );
-
   }
-
-
-
 
   advanceConfigChecked() {
     this.advanceConfig = !this.advanceConfig;
   }
 
   onSubmit() {
-    if (this.IsFormValid && this.createForm.valid) {
+    if (this.IsFormValid && this.createForm.valid ) {
+      this.loading = true;
       this.device.owner.push(this.deviceOwnerName);
       this.device.key = this.deviceKey;
       this.device.mqtt_password = this.password;
       this.deviceService.PostDeviceObservable(this.device).subscribe(
         (message: StandardMessage) => {
-
+          this.loading = false;
           if (message.info === 'Device Created'){
-            this.submitterStatus =true;
+            this.submitterStatus = true;
             this.submitMessage = this.messageArray['success'];
-          }
-          if (message.info === 'Device Exist'){
-            this.submitterStatus =false;
-            this.submitMessage = this.messageArray['success'];
+          } else if (message.error === 'Device Exist') {
+            this.submitterStatus = false;
+            this.submitMessage = this.messageArray['DeviceExist'];
+          }else {
+            this.submitterStatus = false;
+            this.submitMessage = this.messageArray['error'];
           }
           console.log(message);
         }, (error: Response) => {
+          this.loading =false;
+          this.submitterStatus = false;
           this.submitMessage = this.messageArray['error'];
       }
       );
     }
+    this.resetPage();
   }
+  resetPage(){
 
+    this.createForm.onReset();
+    this.loadBasicdata();
+  }
   addPublishTopicAdress() {
     if ( this.IsValidTopicName(this.publishTopicName)) {
       this.device.publish.push(this.basePathToAddTopicAddress + '/' + this.publishTopicName);

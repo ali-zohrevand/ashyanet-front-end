@@ -8,7 +8,8 @@
 
   <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
-      <div class="x_panel">
+      <div *ngIf="loading" class="loader">Loading...</div>
+      <div *ngIf="!loading" class="x_panel">
         <div class="x_title">
           <h2>ایجاد دستگاه جدید
           </h2>
@@ -149,12 +150,12 @@
 
                   </div>
                 </div>
-                <div [className]="statusClassCssLoad()" *ngIf="!advanceConfig && formRegister.submitted">{{this.submitMessage}}</div>
 
                 <button *ngIf="!advanceConfig" class="btn btn-success" style="float: left" type="submit" [disabled]="!formRegister.valid ||
                 !IsFormValid || !IsPredataLoaded">ایجاد
                   دستگاه
                 </button>
+                <div [className]="statusClassCssLoad()" *ngIf="!advanceConfig">{{this.submitMessage}}</div>
 
               </div>
               <hr *ngIf="advanceConfig">
@@ -495,11 +496,13 @@
                   <button class="btn btn-success" style="float: left" type="submit"
                           [disabled]="!IsFormValid || !IsPredataLoaded || !formRegister.valid">ایجاد دستگاه
                   </button>
-                  <div [className]="statusClassCssLoad()" *ngIf="advanceConfig && formRegister.submitted">{{this.submitMessage}}</div>
 
                 </div>
               </div>
+              <div [className]="statusClassCssLoad()" *ngIf="advanceConfig ">{{this.submitMessage}}</div>
+
             </form>
+
           </div>
 
 
