@@ -24,6 +24,7 @@ import {resolve} from 'q';
 import {DeviceResolve} from './models/device/device-resolve';
 import {TypesResolve} from './models/Types/types-resolve';
 import {LocationsResolve} from './models/Locations/locations-resolve';
+import {ShowDataComponent} from './panel/pagecontent/Data/Show-Simple-Data/show-data/show-data.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/panel', pathMatch: 'full'},
@@ -55,7 +56,9 @@ const routes: Routes = [
           {path: 'create', component: LocationCreateComponent },
           {path: ':id' , component: LocationComponent}
         ]
-      }
+      },
+      {path: 'data', component: ShowDataComponent},
+
 
     ]
   }

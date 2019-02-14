@@ -44,6 +44,7 @@ import {LocationsService} from './models/Locations/locations.service';
 import {TypseService} from './models/Types/typse.service';
 import {TypesResolve} from './models/Types/types-resolve';
 import {LocationsResolve} from './models/Locations/locations-resolve';
+import { ShowDataComponent } from './panel/pagecontent/Data/Show-Simple-Data/show-data/show-data.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import {LocationsResolve} from './models/Locations/locations-resolve';
     TypeListComponent,
     LogoutComponent,
     MainComponent,
+    ShowDataComponent,
   ],
   imports: [
     BrowserModule,
