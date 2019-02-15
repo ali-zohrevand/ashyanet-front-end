@@ -18,8 +18,8 @@ export class ShowDataComponent implements OnInit , OnDestroy {
     const messageTO = new StandardMessage;
     messageTO.info = 'salam';
     const idToken = localStorage.getItem('token');
-
-    this.websocketService.connect('ws://localhost:1234/ws/' + idToken).asObservable().subscribe((m) => {console.log(m); });
+    const topic = "/salam"
+    this.websocketService.connect('ws://localhost:1234/data/' + idToken+topic).asObservable().subscribe((m) => {console.log(m); });
     this.websocketService.subject.asObservable().subscribe((m) => {console.log(m); });
 
   }
