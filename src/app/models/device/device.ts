@@ -7,6 +7,7 @@ export class Device {
   public description: string;
   public type: string;
   public owner: string[];
+  public key:string;
   public location: string;
   public publish: string[];
   public subscribe: string[];
@@ -15,7 +16,16 @@ export class Device {
   public commands: DeviceCommand[];
   public mqtt_password: string;
 
-  constructor(
+  constructor() {
+    this.publish = [];
+    this.subscribe = [];
+    this.pubsub = [];
+    this.data = [];
+    this.commands = [];
+    this.owner=[];
+  }
+
+  /*constructor(
     id: string,
     devicename: string,
     description: string,
@@ -41,5 +51,5 @@ export class Device {
     this.data = data;
     this.commands = commands;
     this.mqtt_password = mqtt_password;
-  }
+  }*/
 }

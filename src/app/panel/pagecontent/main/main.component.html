@@ -1,0 +1,55 @@
+<div class="">
+  <div class="page-title">
+    <div class="title_left">
+      <h3>دید کلی</h3>
+    </div>
+
+<!--    <div class="title_right">
+      <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="جست و جو برای...">
+          <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">برو!</button>
+                    </span>
+        </div>
+      </div>
+    </div>
+  </div>-->
+
+  <div class="clearfix"></div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="">
+        <div class="x_content">
+          <div class="row">
+            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+              <div class="tile-stats">
+                <div class="icon"><i class="fa fa-cube square-o-right"></i>
+                </div>
+                <div class="count">{{deviceNumber}} </div>
+                <h3>دستگاه ها</h3>
+                <p><a routerLink="/panel/devices"> لیست دستگاه ها</a></p>
+              </div>
+            </div>
+            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+              <div class="tile-stats">
+                <div class="icon"><i class="fa fa-map-marker"></i>
+                </div>
+                <div *ngIf="LocaionNumber" class="count">{{LocaionNumber}}</div>
+                <div *ngIf="!LocaionNumber" class="count">0</div>
+
+                <h3>موقعیت مکانی</h3>
+                <p> <a routerLink="/panel/locations">لیست موقعیت های مکانی </a> </p>
+              </div>
+            </div>
+
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

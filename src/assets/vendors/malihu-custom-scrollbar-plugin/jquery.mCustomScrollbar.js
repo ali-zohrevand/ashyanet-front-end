@@ -1321,7 +1321,7 @@ and dependencies (minified).
       /*
 		TOUCH SWIPE EVENTS
 		scrolls content via touch swipe
-		Emulates the native touch-swipe scrolling with momentum found in iOS, Android and WP devices
+		Emulates the native touch-swipe scrolling with momentum found in iOS, Android and WP devicesObservable
 		*/
       _contentDraggable = function () {
         var $this = $(this), d = $this.data(pluginPfx), o = d.opt,

@@ -3,13 +3,11 @@
     <nav>
       <div class="nav toggle">
         <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-      </div>
-
-      <ul class="nav navbar-nav navbar-right">
+      </div><ul class="nav navbar-nav navbar-right">
         <li>
           <a aria-expanded="false" class="user-profile dropdown-toggle" data-toggle="dropdown"
              style="cursor: pointer">
-            سلام مرتضی کریمی
+            سلام {{UserName}}
             <span class=" fa fa-angle-down"></span>
           </a>
           <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -20,7 +18,7 @@
                 <span>تنظیمات</span>
               </a>
             </li>
-            <li><a href="/"><i class="fa fa-sign-out pull-right"></i> خروج</a></li>
+            <li><a routerLink="/logout"><i class="fa fa-sign-out pull-right" ></i> خروج</a></li>
           </ul>
         </li>
 

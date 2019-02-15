@@ -1,0 +1,13 @@
+.successSubmit{
+  color: green;
+  text-align: center;
+  font-size: medium;
+}
+.failedSubmit{
+  color: red;
+  text-align: center;
+  font-size: medium;
+}
+input.ng-invalid.ng-touched{
+  border: 1px solid red;
+}

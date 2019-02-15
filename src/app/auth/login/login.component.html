@@ -1,22 +1,32 @@
 <div class="base">
-  <div class="login_wrapper">
+  <div *ngIf="loadingLogin" class="loader">Loading...</div>
+  <div *ngIf="!loadingLogin" class="login_wrapper">
     <div class="animate form login_form">
       <section class="login_content">
-        <form class="base">
+        <form class="base" (ngSubmit)="onLogin()" #loginForm="ngForm">
           <h1 class="base">فرم ورود</h1>
           <div>
-            <input class="form-control" placeholder="نام کاربری" required="" type="text"/>
+            <input class="form-control" placeholder="نام کاربری" required type="text" #usernameELement="ngModel"  name="username" [(ngModel)]="username"/>
           </div>
+          <div class="help-block" style="color: red" *ngIf="!usernameELement.valid && usernameELement.touched "> لطفا نام کاربری را وارد نمایید.</div>
+
           <div>
-            <input class="form-control" placeholder="رمز ورود" required="" type="password"/>
+            <input class="form-control" placeholder="رمز ورود" required type="password" [(ngModel)]="password" name="password" #passwordElemet="ngModel"/>
           </div>
+          <div class="help-block" style="color: red" *ngIf="!passwordElemet.valid && passwordElemet.touched "> لطفا رمز عبور را وارد نمایید.</div>
+
           <div>
-            <a class="btn btn-default submit" routerLink="/">ورود</a>
+            <button class="btn btn-default submit" [disabled]="!loginForm.valid" type="submit" style="float: right">
+              ورود
+            </button>
             <a class="reset_pass base" routerLink="/recover">رمز ورود را از دست دادید؟</a>
           </div>
+
           <div class="clearfix"></div>
+          <div class="help-block" style="color: red" *ngIf="loginFaield"> نام کاربری یا رمز عبور اشتباه است.</div>
+
           <div class="separator">
-            <p class="change_link">جدید در سایت؟
+            <p class="change_link">کاربر جدید هستید؟
               <a class="to_register base" routerLink="/register"> ایجاد حساب </a>
             </p>
 

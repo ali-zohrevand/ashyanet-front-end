@@ -1,4 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {AuthenticationService} from '../services/Auth/authentication.service';
+import {ApiService} from '../services/API/api.service';
+import {Info} from '../models/Info/info';
 
 @Component({
   selector: 'app-top-navigation',
@@ -6,14 +10,26 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./top-navigation.component.css']
 })
 export class TopNavigationComponent implements OnInit {
+  private info:  Info;
+  private UserName: string;
+  constructor(private router: Router, private auth: AuthenticationService, private apiService: ApiService) {
 
-  constructor() {
+    this.info = new Info();
   }
 
   ngOnInit() {
     this.loadScript('../../../../../assets/vendors/jquery/dist/jquery.min.js');
     this.loadScript('../../../../../assets/vendors/jquery/dist/jquery.min.js');
     this.loadScript('../../../../../assets/vendors/bootstrap/dist/js/bootstrap.min.js');
+    this.apiService.getApi('info').subscribe(
+      (info: Info) => {
+        this.info = info;
+        this.UserName=info.name;
+        console.log(info);
+      }, (errorResponse: Response) => {
+      console.log(errorResponse);
+      }
+    );
 
   }
 
@@ -25,5 +41,9 @@ export class TopNavigationComponent implements OnInit {
     script.async = false;
     script.defer = true;
     body.appendChild(script);
+  }
+  logout() {
+    this.auth.logout();
+    this.router.navigate(['login']);
   }
 }

@@ -1,0 +1,64 @@
+<div class="page-title">
+  <div class="title_left">
+    <h3>نوع دستگاه</h3>
+  </div>
+
+</div>
+<div class="col-md-12 col-sm-12 col-xs-12">
+  <div class="x_panel">
+    <div class="x_title">
+      <h2>لیست انواع دستگاه ها
+      </h2>
+
+      <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+      <p *ngIf="errorHapened" style="text-align: center" class="text-muted font-13 m-b-30">
+        متاسفانه خطایی رخ داده است. لطفا بعدا مراجعه نمایید.
+      </p>
+
+      <p *ngIf="HasTypeObject && !errorHapened" class="text-muted font-13 m-b-30">
+        در این بخش انواع دستگاه های شما قابل ملاحظه است.
+        <a class="btn btn-default" routerLink="/panel/devices/types/create"> می توانید نوع جدید نیز بسازید.</a>
+
+      </p>
+      <table *ngIf="HasTypeObject" id="datatable-fixed-header" class="table table-striped table-bordered">
+        <thead>
+        <tr>
+          <th></th>
+          <th>نام نوع دستگاه</th>
+          <th>توضیحات</th>
+          <th>عملیات</th>
+
+        </tr>
+        </thead>
+
+
+        <tbody>
+        <tr *ngFor="let type of types;let i = index">
+          <td>{{i+1}}</td>
+          <td>
+            <div *ngIf="type.name===''">--</div>
+            {{type.name}}
+          </td>
+          <td>
+            <div *ngIf="type.dsc===''">--</div>
+            {{type.dsc}}
+          </td>
+
+          <td>
+            <div class="btn-group  btn-group-sm">
+              <a class="btn btn-primary" type="button">ویرایش</a>
+              <a class="btn btn-danger" type="button">حذف</a>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <p *ngIf="!HasTypeObject &&  !errorHapened" class="text-muted font-13 m-b-30">
+        نوع دستگاهی برای نمایش وجود ندارد.
+        <a class="btn btn-default" routerLink="/panel/devices/types/create">میتوانید نوع جدید بسازید.</a>
+      </p>
+    </div>
+  </div>
+</div>
