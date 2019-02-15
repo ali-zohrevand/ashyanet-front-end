@@ -205,7 +205,7 @@ Licensed under the MIT license.
 
     // The iPhone 4, for example, has a device-independent width of 320px,
     // but its screen is actually 640px wide.  It therefore has a pixel
-    // ratio of 2, while most normal devicesObservable have a ratio of 1.
+    // ratio of 2, while most normal devices have a ratio of 1.
 
     var devicePixelRatio = window.devicePixelRatio || 1,
       backingStoreRatio =
