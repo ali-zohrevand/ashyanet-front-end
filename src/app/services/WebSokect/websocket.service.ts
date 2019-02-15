@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable, Observer, Subject} from 'rxjs';
+import {StandardMessage} from "../../models/ApiMessage/standard-message";
 
 @Injectable({
   providedIn: 'root'
@@ -45,3 +46,27 @@ export class WebsocketService {
     this.subject = null;
   }
 }
+
+
+/*
+
+
+constructor(private websocketService: WebsocketService) {
+
+}
+
+ngOnInit() {
+  const messageTO = new StandardMessage;
+  messageTO.info = 'salam';
+  const idToken = localStorage.getItem('token');
+  const topic = "/salam"
+  this.websocketService.connect('ws://localhost:1234/data/' + idToken+topic).asObservable().subscribe((m) => {console.log(m); });
+  this.websocketService.subject.asObservable().subscribe((m) => {console.log(m); });
+
+}
+
+
+ngOnDestroy(): void {
+  this.websocketService.close();
+
+}*/
