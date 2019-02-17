@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {MqttMessages} from "../../../../../models/Data/mqtt/mqtt-messages";
+import {DevicesService} from "../../../../../models/device/devices.service";
 
 @Component({
   selector: 'app-topic-sub',
@@ -7,12 +9,16 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./topic-sub.component.css']
 })
 export class TopicSubComponent implements OnInit {
-  constructor(private rroute: ActivatedRoute) { }
-  topicBas64: string;
-  topicPath: string;
+  messages: MqttMessages[];
+  messageAvailbale:boolean;
+  constructor( private router: ActivatedRoute ) { }
+
   ngOnInit() {
-    this.topicBas64 = this.rroute.snapshot.params['topic'];
-    this.topicPath = atob(this.topicBas64);
+    console.log(this.router.snapshot.data.messages);
+    this.messages = this.router.snapshot.data.messages;
+  if (this.messages !==null || this.messages.length>0){
+    this.messageAvailbale = true;
+  }
   }
 
 }

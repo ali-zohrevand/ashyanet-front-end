@@ -49,6 +49,7 @@ import { ListTopicComponent } from './panel/pagecontent/Data/Mqtt/list-topic/lis
 import { MainMqttComponent } from './panel/pagecontent/Data/Mqtt/main-mqtt/main-mqtt.component';
 import { TopicSubComponent } from './panel/pagecontent/Data/Mqtt/topic-sub/topic-sub.component';
 import { MainPageDataComponent } from './panel/pagecontent/Data/MainData/main-page-data/main-page-data.component';
+import {TopicSubResolve} from "./models/Data/mqtt/topic-sub-resolve";
 
 @NgModule({
   declarations: [
@@ -103,6 +104,7 @@ import { MainPageDataComponent } from './panel/pagecontent/Data/MainData/main-pa
     TypseService,
     TypesResolve,
     LocationsResolve,
+    TopicSubResolve,
     {provide: APP_BASE_HREF, useValue: '/'},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
