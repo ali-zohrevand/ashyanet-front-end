@@ -25,6 +25,7 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     this.mqttServices.getMqttInfo().subscribe((info: MqttInfo) => {
     this.MqttInfo = info;
+    console.log(info);
     }, (error: Response) => {
 
     });
