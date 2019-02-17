@@ -5,6 +5,8 @@ import {Device} from '../../../models/device/device';
 import {DevicesService} from '../../../models/device/devices.service';
 import {LocationsService} from '../../../models/Locations/locations.service';
 import {el} from '@angular/platform-browser/testing/src/browser_util';
+import {MqttInfo} from '../../../models/Data/mqtt/mqtt-info';
+import {MqttService} from '../../../models/Data/mqtt/mqtt.service';
 
 @Component({
   selector: 'app-main',
@@ -14,14 +16,18 @@ import {el} from '@angular/platform-browser/testing/src/browser_util';
 export class MainComponent implements OnInit {
   deviceNumber: number;
   LocaionNumber: number;
-
-  constructor(private deviceApi: DevicesService, private LocationService: LocationsService) {
+  MqttInfo: MqttInfo;
+  constructor(private deviceApi: DevicesService, private LocationService: LocationsService, private mqttServices: MqttService) {
     this.deviceNumber = 0;
     this.LocaionNumber = 0;
   }
 
   ngOnInit() {
+    this.mqttServices.getMqttInfo().subscribe((info: MqttInfo) => {
+    this.MqttInfo = info;
+    }, (error: Response) => {
 
+    });
     this.deviceApi.getDeviceObservable().subscribe((d: Device[]) => {
       if (d === null) {
         this.deviceNumber = 0;

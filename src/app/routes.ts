@@ -24,10 +24,11 @@ import {resolve} from 'q';
 import {DeviceResolve} from './models/device/device-resolve';
 import {TypesResolve} from './models/Types/types-resolve';
 import {LocationsResolve} from './models/Locations/locations-resolve';
-import {ShowDataComponent} from './panel/pagecontent/Data/Show-Simple-Data/show-data/show-data.component';
+import {ShowDataComponent} from './panel/pagecontent/Data/MainData/router-component/show-data.component';
 import {ListTopicComponent} from './panel/pagecontent/Data/Mqtt/list-topic/list-topic.component';
 import {MainMqttComponent} from './panel/pagecontent/Data/Mqtt/main-mqtt/main-mqtt.component';
 import {TopicSubComponent} from './panel/pagecontent/Data/Mqtt/topic-sub/topic-sub.component';
+import {MainPageDataComponent} from './panel/pagecontent/Data/MainData/main-page-data/main-page-data.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/panel', pathMatch: 'full'},
@@ -61,9 +62,10 @@ const routes: Routes = [
         ]
       },
       {path: 'data', component: ShowDataComponent , children: [
+          {path: '', component: MainPageDataComponent},
           {path: 'mqtt', component: MainMqttComponent , children: [
               { path: '' , component: ListTopicComponent },
-              { path: 'topic' , component: TopicSubComponent}
+              { path: ':topic' , component: TopicSubComponent}
             ] }
         ]},
 

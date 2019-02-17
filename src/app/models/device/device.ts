@@ -13,7 +13,7 @@ export class Device {
   public subscribe: string[];
   public pubsub: string[];
   public data: DeviceData[];
-  public commands: DeviceCommand[];
+  public command: DeviceCommand[];
   public mqtt_password: string;
 
   constructor() {
@@ -21,8 +21,8 @@ export class Device {
     this.subscribe = [];
     this.pubsub = [];
     this.data = [];
-    this.commands = [];
-    this.owner=[];
+    this.command = [];
+    this.owner = [];
   }
 
   /*constructor(

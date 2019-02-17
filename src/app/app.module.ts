@@ -44,10 +44,11 @@ import {LocationsService} from './models/Locations/locations.service';
 import {TypseService} from './models/Types/typse.service';
 import {TypesResolve} from './models/Types/types-resolve';
 import {LocationsResolve} from './models/Locations/locations-resolve';
-import { ShowDataComponent } from './panel/pagecontent/Data/Show-Simple-Data/show-data/show-data.component';
+import { ShowDataComponent } from './panel/pagecontent/Data/MainData/router-component/show-data.component';
 import { ListTopicComponent } from './panel/pagecontent/Data/Mqtt/list-topic/list-topic.component';
 import { MainMqttComponent } from './panel/pagecontent/Data/Mqtt/main-mqtt/main-mqtt.component';
 import { TopicSubComponent } from './panel/pagecontent/Data/Mqtt/topic-sub/topic-sub.component';
+import { MainPageDataComponent } from './panel/pagecontent/Data/MainData/main-page-data/main-page-data.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { TopicSubComponent } from './panel/pagecontent/Data/Mqtt/topic-sub/topic
     ListTopicComponent,
     MainMqttComponent,
     TopicSubComponent,
+    MainPageDataComponent,
   ],
   imports: [
     BrowserModule,

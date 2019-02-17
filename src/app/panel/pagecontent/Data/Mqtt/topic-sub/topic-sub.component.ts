@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-topic-sub',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./topic-sub.component.css']
 })
 export class TopicSubComponent implements OnInit {
-
-  constructor() { }
-
+  constructor(private rroute: ActivatedRoute) { }
+  topicBas64: string;
+  topicPath: string;
   ngOnInit() {
+    this.topicBas64 = this.rroute.snapshot.params['topic'];
+    this.topicPath = atob(this.topicBas64);
   }
 
 }

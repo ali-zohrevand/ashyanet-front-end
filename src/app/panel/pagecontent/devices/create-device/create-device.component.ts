@@ -67,7 +67,7 @@ export class CreateDeviceComponent implements OnInit {
     this.dataName = '';
     this.device = new Device();
     this.device.publish = [];
-    this.device.commands = [];
+    this.device.command = [];
     this.deviceOwnerName = 'GetdeviceOwnerName';
     this.deviceKey = 'GetdeviceKey';
     this.basePathToAddTopicAddress = '/serverId/UserName';
@@ -298,12 +298,12 @@ export class CreateDeviceComponent implements OnInit {
       this.command_name = '';
       this.command_dsc = '';
       this.command_address = '';
-      this.device.commands.push(command);
+      this.device.command.push(command);
     }
   }
   deleteCommand(i: number) {
-    if (i > -1 && i < this.device.commands.length) {
-      this.device.commands.splice(i, 1);
+    if (i > -1 && i < this.device.command.length) {
+      this.device.command.splice(i, 1);
     }
   }
 
