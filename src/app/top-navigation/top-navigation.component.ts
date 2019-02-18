@@ -12,7 +12,7 @@ import {Info} from '../models/Info/info';
 export class TopNavigationComponent implements OnInit {
   private info:  Info;
   private UserName: string;
-  constructor(private router: Router, private auth: AuthenticationService, private apiService: ApiService) {
+  constructor(private router: Router, private auth: AuthenticationService, private apiService: ApiService, private authService: AuthenticationService) {
 
     this.info = new Info();
   }
@@ -24,10 +24,13 @@ export class TopNavigationComponent implements OnInit {
     this.apiService.getApi('info').subscribe(
       (info: Info) => {
         this.info = info;
-        this.UserName=info.name;
-        console.log(info);
+        this.UserName = info.name;
+        if (this.UserName === '' || this.UserName === null)     {
+         this.logout();
+        }
+
       }, (errorResponse: Response) => {
-      console.log(errorResponse);
+        this.logout();
       }
     );
 

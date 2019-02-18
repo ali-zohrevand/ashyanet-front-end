@@ -1,0 +1,59 @@
+<div class="page-title">
+  <div class="title_left">
+    <h3>داده
+    </h3>
+  </div>
+
+
+<div class="clearfix"></div>
+
+<div class="row">
+
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div  class="x_title">
+        <h2>پیام های دریافتی تاپیک انتخابی
+        </h2>
+
+        <div class="clearfix"></div>
+      </div>
+      <div  class="x_content">
+        <p style="text-align: center" *ngIf="!messageAvailbale" class="text-muted font-13 m-b-30">
+          پیامی هنوز دریافت نشده است.
+        </p>
+        <p *ngIf="messageAvailbale" class="text-muted font-13 m-b-30">
+             ‌پیام های دریافتی تاپیک زیر را در جدول زیر مشاهده می نمایید.
+        </p>
+        <p style="direction: ltr; text-align: center">
+        {{baseTopic}}
+
+        </p>
+        <hr>
+        <table *ngIf="messageAvailbale" id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap"
+               cellspacing="0" width="100%">
+          <thead>
+          <tr >
+            <th></th>
+            <th>پیام دریافتی</th>
+            <th> id پیام دریافتی</th>
+            <th>qos</th>
+            <th>retained</th>
+            <th> زمان</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let message of messages; let i = index;">
+            <td>{{i+1}}</td>
+            <td>{{message.message}}</td>
+            <td>{{message.message_id}}</td>
+            <td>{{message.qos}}</td>
+            <td>{{message.retained}}</td>
+            <td> {{whatTimeIsIt(message.time)}} </td>
+          </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>
