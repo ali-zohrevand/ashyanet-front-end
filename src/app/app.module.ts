@@ -49,7 +49,10 @@ import { ListTopicComponent } from './panel/pagecontent/Data/Mqtt/list-topic/lis
 import { MainMqttComponent } from './panel/pagecontent/Data/Mqtt/main-mqtt/main-mqtt.component';
 import { TopicSubComponent } from './panel/pagecontent/Data/Mqtt/topic-sub/topic-sub.component';
 import { MainPageDataComponent } from './panel/pagecontent/Data/MainData/main-page-data/main-page-data.component';
-import {TopicSubResolve} from "./models/Data/mqtt/topic-sub-resolve";
+import {TopicSubResolve} from './models/Data/mqtt/topic-sub-resolve';
+import { EventRouterComponent } from './panel/pagecontent/Event/event-router/event-router.component';
+import { EventListComponent } from './panel/pagecontent/Event/event-list/event-list.component';
+import { EventCreateComponent } from './panel/pagecontent/Event/event-create/event-create.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +90,9 @@ import {TopicSubResolve} from "./models/Data/mqtt/topic-sub-resolve";
     MainMqttComponent,
     TopicSubComponent,
     MainPageDataComponent,
+    EventRouterComponent,
+    EventListComponent,
+    EventCreateComponent,
   ],
   imports: [
     BrowserModule,
