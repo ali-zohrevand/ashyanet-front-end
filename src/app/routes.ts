@@ -30,6 +30,10 @@ import {MainMqttComponent} from './panel/pagecontent/Data/Mqtt/main-mqtt/main-mq
 import {TopicSubComponent} from './panel/pagecontent/Data/Mqtt/topic-sub/topic-sub.component';
 import {MainPageDataComponent} from './panel/pagecontent/Data/MainData/main-page-data/main-page-data.component';
 import {TopicSubResolve} from './models/Data/mqtt/topic-sub-resolve';
+import {EventRouterComponent} from './panel/pagecontent/Event/event-router/event-router.component';
+import {EventMainComponent} from './panel/pagecontent/Event/event-main/event-main.component';
+import {EventListComponent} from './panel/pagecontent/Event/event-list/event-list.component';
+import {EventCreateComponent} from './panel/pagecontent/Event/event-create/event-create.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/panel', pathMatch: 'full'},
@@ -69,6 +73,11 @@ const routes: Routes = [
               { path: ':topic' , component: TopicSubComponent, resolve: {messages: TopicSubResolve}}
             ] }
         ]},
+      {path: 'event' , component: EventRouterComponent , children: [
+          {path: '', component: EventMainComponent},
+          {path: 'list' , component: EventListComponent},
+          {path: 'create', component: EventCreateComponent}
+        ]}
 
 
     ]

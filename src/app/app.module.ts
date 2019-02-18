@@ -53,6 +53,7 @@ import {TopicSubResolve} from './models/Data/mqtt/topic-sub-resolve';
 import { EventRouterComponent } from './panel/pagecontent/Event/event-router/event-router.component';
 import { EventListComponent } from './panel/pagecontent/Event/event-list/event-list.component';
 import { EventCreateComponent } from './panel/pagecontent/Event/event-create/event-create.component';
+import { EventMainComponent } from './panel/pagecontent/Event/event-main/event-main.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import { EventCreateComponent } from './panel/pagecontent/Event/event-create/eve
     EventRouterComponent,
     EventListComponent,
     EventCreateComponent,
+    EventMainComponent,
   ],
   imports: [
     BrowserModule,
