@@ -369,7 +369,7 @@
 
 
                   </div>
-                  <table *ngIf="device.commands.length>0" class="table table-striped ">
+                  <table *ngIf="device.command.length>0" class="table table-striped ">
                     <thead>
                     <tr>
                       <th style="width: 1%"></th>
@@ -381,7 +381,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor="let cm of device.commands; let i= index">
+                    <tr *ngFor="let cm of device.command; let i= index">
                       <td>{{i+1}}</td>
                       <td>
                         <a>{{cm.name}}</a>

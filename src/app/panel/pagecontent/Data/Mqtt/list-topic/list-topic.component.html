@@ -1,0 +1,70 @@
+
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+  <div class="x_panel">
+    <div class="x_title">
+      <h2>لیست تاپیک ها
+        <small>subscribe</small>
+      </h2>
+
+      <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+      <p class="text-muted font-13 m-b-30">
+        در جدول زیر لیست تاپیک هایی که تمام دستگاه های ما آنها را پیگیری میکنند نمایش داده شده اند.
+      </p>
+      <hr>
+      <div *ngIf="devicesLoade">
+        <div  *ngFor="let device of devices" >
+          <p class="text-muted font-13 m-b-30"> نمایش اطلاعات دستگاه "{{device.devicename}}"</p>
+          <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap"
+                 cellspacing="0" width="100%">
+            <thead>
+            <tr>
+              <th>نام دستگاه</th>
+              <th>نوع تاپیک</th>
+              <th>آدرس تاپیک</th>
+              <th></th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let topic of device.subscribe">
+              <td>{{device.devicename}}</td>
+              <td> subscribe </td>
+              <td  class="topic">{{topic}}</td>
+              <td><a class="btn btn-default" (click)="showTopicMessages(topic)">نمایش اطلاعات</a></td>
+            </tr>
+            <tr *ngFor="let topic of device.publish">
+              <td>{{device.devicename}}</td>
+              <td> publish </td>
+              <td  class="topic">{{topic}}</td>
+              <td><a class="btn btn-default" (click)="showTopicMessages(topic)">نمایش اطلاعات</a></td>
+            </tr>
+            <tr *ngFor="let topic of device.pubsub">
+              <td>{{device.devicename}}</td>
+              <td>pubsub</td>
+              <td class="topic">{{topic}}</td>
+              <td><a class="btn btn-default" (click)="showTopicMessages(topic)">نمایش اطلاعات</a></td>
+            </tr>
+           <tr *ngFor="let cm of device.command">
+             <td>{{device.devicename}}</td>
+             <td>command </td>
+             <td class="topic">{{cm.topic}}</td>
+             <td><a class="btn btn-default" (click)="showTopicMessages(cm.topic)">نمایش اطلاعات</a></td>
+           </tr>
+            <tr *ngFor="let d of device.data">
+              <td>{{device.devicename}}</td>
+              <td>data </td>
+              <td class="topic">{{d.topic}}</td>
+              <td><a class="btn btn-default" (click)="showTopicMessages(d.topic)">نمایش اطلاعات</a></td>
+            </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

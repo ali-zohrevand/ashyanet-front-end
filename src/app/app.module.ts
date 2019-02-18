@@ -44,7 +44,15 @@ import {LocationsService} from './models/Locations/locations.service';
 import {TypseService} from './models/Types/typse.service';
 import {TypesResolve} from './models/Types/types-resolve';
 import {LocationsResolve} from './models/Locations/locations-resolve';
-import { ShowDataComponent } from './panel/pagecontent/Data/Show-Simple-Data/show-data/show-data.component';
+import { ShowDataComponent } from './panel/pagecontent/Data/MainData/router-component/show-data.component';
+import { ListTopicComponent } from './panel/pagecontent/Data/Mqtt/list-topic/list-topic.component';
+import { MainMqttComponent } from './panel/pagecontent/Data/Mqtt/main-mqtt/main-mqtt.component';
+import { TopicSubComponent } from './panel/pagecontent/Data/Mqtt/topic-sub/topic-sub.component';
+import { MainPageDataComponent } from './panel/pagecontent/Data/MainData/main-page-data/main-page-data.component';
+import {TopicSubResolve} from './models/Data/mqtt/topic-sub-resolve';
+import { EventRouterComponent } from './panel/pagecontent/Event/event-router/event-router.component';
+import { EventListComponent } from './panel/pagecontent/Event/event-list/event-list.component';
+import { EventCreateComponent } from './panel/pagecontent/Event/event-create/event-create.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +86,13 @@ import { ShowDataComponent } from './panel/pagecontent/Data/Show-Simple-Data/sho
     LogoutComponent,
     MainComponent,
     ShowDataComponent,
+    ListTopicComponent,
+    MainMqttComponent,
+    TopicSubComponent,
+    MainPageDataComponent,
+    EventRouterComponent,
+    EventListComponent,
+    EventCreateComponent,
   ],
   imports: [
     BrowserModule,
@@ -95,6 +110,7 @@ import { ShowDataComponent } from './panel/pagecontent/Data/Show-Simple-Data/sho
     TypseService,
     TypesResolve,
     LocationsResolve,
+    TopicSubResolve,
     {provide: APP_BASE_HREF, useValue: '/'},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}

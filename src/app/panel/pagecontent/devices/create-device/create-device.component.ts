@@ -19,7 +19,7 @@ import {StandardMessage} from '../../../../models/ApiMessage/standard-message';
 export class CreateDeviceComponent implements OnInit {
   messageArray: object;
   @ViewChild('formRegister') createForm: NgForm;
-  loading:boolean;
+  loading: boolean;
   submitterStatus: boolean;
   submitMessage: string;
   IsFormValid: boolean;
@@ -67,7 +67,7 @@ export class CreateDeviceComponent implements OnInit {
     this.dataName = '';
     this.device = new Device();
     this.device.publish = [];
-    this.device.commands = [];
+    this.device.command = [];
     this.deviceOwnerName = 'GetdeviceOwnerName';
     this.deviceKey = 'GetdeviceKey';
     this.basePathToAddTopicAddress = '/serverId/UserName';
@@ -172,19 +172,19 @@ export class CreateDeviceComponent implements OnInit {
       this.deviceService.PostDeviceObservable(this.device).subscribe(
         (message: StandardMessage) => {
           this.loading = false;
-          if (message.info === 'Device Created'){
+          if (message.info === 'Device Created') {
             this.submitterStatus = true;
             this.submitMessage = this.messageArray['success'];
           } else if (message.error === 'Device Exist') {
             this.submitterStatus = false;
             this.submitMessage = this.messageArray['DeviceExist'];
-          }else {
+          } else {
             this.submitterStatus = false;
             this.submitMessage = this.messageArray['error'];
           }
           console.log(message);
         }, (error: Response) => {
-          this.loading =false;
+          this.loading = false;
           this.submitterStatus = false;
           this.submitMessage = this.messageArray['error'];
       }
@@ -192,7 +192,7 @@ export class CreateDeviceComponent implements OnInit {
     }
     this.resetPage();
   }
-  resetPage(){
+  resetPage() {
 
     this.createForm.onReset();
     this.loadBasicdata();
@@ -298,12 +298,12 @@ export class CreateDeviceComponent implements OnInit {
       this.command_name = '';
       this.command_dsc = '';
       this.command_address = '';
-      this.device.commands.push(command);
+      this.device.command.push(command);
     }
   }
   deleteCommand(i: number) {
-    if (i > -1 && i < this.device.commands.length) {
-      this.device.commands.splice(i, 1);
+    if (i > -1 && i < this.device.command.length) {
+      this.device.command.splice(i, 1);
     }
   }
 

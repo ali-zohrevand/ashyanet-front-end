@@ -12,6 +12,7 @@ export class DeviceResolve implements OnInit, Resolve<Observable<object>> {
   deviceObser: Observable<object>;
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<object> {
+
     this.deviceObser = this.ApiServices.getDeviceObservable();
     console.log(this.deviceObser);
     return this.deviceObser;
