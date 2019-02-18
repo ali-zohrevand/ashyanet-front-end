@@ -25,12 +25,12 @@
             <div class="row">
               <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="tile-stats">
-                  <div class="icon"><i class="fa fa-envelope-open square-o-right"></i>
+                  <div class="icon"><i class="fa fa-exchange square-o-right"></i>
                   </div>
                   <div *ngIf="!MqttInfo" class="count">0 </div>
                   <div *ngIf="MqttInfo" class="count">{{MqttInfo.number_of_message}} </div>
 
-                  <h3>تعداد پیام های دریافتی</h3>
+                  <h3>داده</h3>
                   <p><a routerLink="/panel/data/mqtt">مشاهده تاپیک ها</a></p>
                 </div>
               </div>

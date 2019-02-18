@@ -35,7 +35,12 @@
               <td  class="topic">{{topic}}</td>
               <td><a class="btn btn-default" (click)="showTopicMessages(topic)">نمایش اطلاعات</a></td>
             </tr>
-
+            <tr *ngFor="let topic of device.publish">
+              <td>{{device.devicename}}</td>
+              <td> publish </td>
+              <td  class="topic">{{topic}}</td>
+              <td><a class="btn btn-default" (click)="showTopicMessages(topic)">نمایش اطلاعات</a></td>
+            </tr>
             <tr *ngFor="let topic of device.pubsub">
               <td>{{device.devicename}}</td>
               <td>pubsub</td>
@@ -48,6 +53,12 @@
              <td class="topic">{{cm.topic}}</td>
              <td><a class="btn btn-default" (click)="showTopicMessages(cm.topic)">نمایش اطلاعات</a></td>
            </tr>
+            <tr *ngFor="let d of device.data">
+              <td>{{device.devicename}}</td>
+              <td>data </td>
+              <td class="topic">{{d.topic}}</td>
+              <td><a class="btn btn-default" (click)="showTopicMessages(d.topic)">نمایش اطلاعات</a></td>
+            </tr>
             </tbody>
           </table>
 
