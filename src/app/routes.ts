@@ -34,6 +34,7 @@ import {EventRouterComponent} from './panel/pagecontent/Event/event-router/event
 import {EventMainComponent} from './panel/pagecontent/Event/event-main/event-main.component';
 import {EventListComponent} from './panel/pagecontent/Event/event-list/event-list.component';
 import {EventCreateComponent} from './panel/pagecontent/Event/event-create/event-create.component';
+import {WizardFormComponent} from './Lab/WizardForm/wizard-form/wizard-form.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/panel', pathMatch: 'full'},
@@ -77,7 +78,8 @@ const routes: Routes = [
           {path: '', component: EventMainComponent},
           {path: 'list' , component: EventListComponent},
           {path: 'create', component: EventCreateComponent}
-        ]}
+        ]},
+      {path: 'lab', component: WizardFormComponent}
 
 
     ]

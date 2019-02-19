@@ -54,6 +54,8 @@ import { EventRouterComponent } from './panel/pagecontent/Event/event-router/eve
 import { EventListComponent } from './panel/pagecontent/Event/event-list/event-list.component';
 import { EventCreateComponent } from './panel/pagecontent/Event/event-create/event-create.component';
 import { EventMainComponent } from './panel/pagecontent/Event/event-main/event-main.component';
+import { WizardFormComponent } from './Lab/WizardForm/wizard-form/wizard-form.component';
+import { CreateConditionComponent } from './panel/pagecontent/Event/condition/create-condition/create-condition.component';
 
 @NgModule({
   declarations: [
@@ -95,6 +97,8 @@ import { EventMainComponent } from './panel/pagecontent/Event/event-main/event-m
     EventListComponent,
     EventCreateComponent,
     EventMainComponent,
+    WizardFormComponent,
+    CreateConditionComponent,
   ],
   imports: [
     BrowserModule,
