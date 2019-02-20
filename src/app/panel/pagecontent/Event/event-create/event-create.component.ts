@@ -3,6 +3,8 @@ import {Device} from '../../../../models/device/device';
 import {DevicesService} from '../../../../models/device/devices.service';
 import {el} from '@angular/platform-browser/testing/src/browser_util';
 import {DeviceCommand} from '../../../../models/device/device-command';
+import {Condition} from '../../../../models/Event/condition';
+import {EventService} from '../../../../models/Event/event.service';
 
 @Component({
   selector: 'app-event-create',
@@ -20,12 +22,18 @@ export class EventCreateComponent implements OnInit {
   selectedAddress: string;
   commandsNumber = 0;
   selectedCommand: DeviceCommand;
-  constructor(private deviceServices: DevicesService) {
+  inpuType: string;
+  conditionSelected: Condition;
+  conditionType: number;
+  firstAttr: any;
+  secondAttr: any;
+  constructor(private deviceServices: DevicesService, private eventService: EventService) {
   }
 
   ngOnInit() {
     this.selectedDevices = new Device();
     this.selectedCommand = new DeviceCommand();
+    this.conditionSelected = new Condition();
     this.deviceServices.getDeviceObservable().subscribe((devices: Device[]) => {
         this.devices = devices;
         if (this.devices !== null && this.devices.length > 0) {
@@ -47,7 +55,6 @@ export class EventCreateComponent implements OnInit {
   nexSection() {
 
     this.currentSection = this.currentSection + 1;
-    console.log(this.currentSection);
   }
   whatIsMyStyle(sectionNumber: number) {
     if (sectionNumber === this.currentSection) {
@@ -63,7 +70,14 @@ export class EventCreateComponent implements OnInit {
 
   prevSection() {
     this.currentSection = this.currentSection - 1;
-    console.log(this.currentSection);
 
+  }
+
+  IsConditionSelected() {
+    const  cond = this.eventService.getCondition();
+    if (cond !==null && cond.condition_type !==null){
+      return true;
+    }
+    return false;
   }
 }

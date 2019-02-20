@@ -56,6 +56,9 @@ import { EventCreateComponent } from './panel/pagecontent/Event/event-create/eve
 import { EventMainComponent } from './panel/pagecontent/Event/event-main/event-main.component';
 import { WizardFormComponent } from './Lab/WizardForm/wizard-form/wizard-form.component';
 import { CreateConditionComponent } from './panel/pagecontent/Event/condition/create-condition/create-condition.component';
+import { ConditionIntChoiceComponent } from './panel/pagecontent/Event/condition/create-condition/condition-int-choice/condition-int-choice.component';
+import { ConditionStringChoiceComponent } from './panel/pagecontent/Event/condition/create-condition/condition-string-choice/condition-string-choice.component';
+import {EventService} from './models/Event/event.service';
 
 @NgModule({
   declarations: [
@@ -99,6 +102,8 @@ import { CreateConditionComponent } from './panel/pagecontent/Event/condition/cr
     EventMainComponent,
     WizardFormComponent,
     CreateConditionComponent,
+    ConditionIntChoiceComponent,
+    ConditionStringChoiceComponent,
   ],
   imports: [
     BrowserModule,
@@ -117,6 +122,7 @@ import { CreateConditionComponent } from './panel/pagecontent/Event/condition/cr
     TypesResolve,
     LocationsResolve,
     TopicSubResolve,
+    EventService,
     {provide: APP_BASE_HREF, useValue: '/'},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}

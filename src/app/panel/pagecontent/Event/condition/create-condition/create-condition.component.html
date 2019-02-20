@@ -1,0 +1,38 @@
+  <p>در این بخش می بایست داده ای که میخواهید شرایط آنرا بررسی کرده و در صورت وقوع دستور انتخابی ایجاد شود را مشخض کنید.
+  </p>
+  <div class="form-group ">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12"> انتخاب نوع داده</label>
+    <div class="col-md-7 col-xs-12">
+      <select [(ngModel)]="inpuType" class="form-control col-md-3 col-sm-3 col-xs-12">
+        <option value="string">رشته</option>
+        <option value="int">عدد</option>
+        <option value="json">جیسون</option>
+      </select>
+    </div>
+  </div>
+  <br>
+  <hr>
+  <div [ngSwitch]="inpuType" >
+    <div *ngSwitchCase="'string'">
+
+    </div>
+    <div *ngSwitchCase="'int'" (click)="setCondition()">
+
+      <app-condition-int-choice></app-condition-int-choice>
+      </div>
+
+
+    <div *ngSwitchCase="'json'">
+      <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="JsonName">نام متغیر json
+        </label>
+        <div class="col-md-3 col-sm-3 col-xs-12">
+          <input class="form-control col-md-3 col-sm-3 col-xs-12" id="JsonName"
+                 type="text" [(ngModel)]="condition.json_attribute_name" name="JsonName"  >
+        </div>
+      </div>
+‍‍
+    </div>
+    <br>
+    <div *ngSwitchDefault > نوع داده را انتخاب کنید.</div>
+  </div>
