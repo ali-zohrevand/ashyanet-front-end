@@ -4,6 +4,7 @@ export class Condition {
           public attr: any[];
 
   constructor() {
+    this.attr = [];
   }
 }
 
