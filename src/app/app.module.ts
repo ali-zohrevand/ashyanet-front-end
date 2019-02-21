@@ -122,7 +122,6 @@ import {EventService} from './models/Event/event.service';
     TypesResolve,
     LocationsResolve,
     TopicSubResolve,
-    EventService,
     {provide: APP_BASE_HREF, useValue: '/'},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}

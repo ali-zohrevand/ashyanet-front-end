@@ -74,9 +74,12 @@ export class EventCreateComponent implements OnInit {
   }
 
   IsConditionSelected() {
-    this.conditionSelected = this.eventService.getCondition();
-    console.log(this.conditionSelected);
-    if (this.conditionSelected !==null && this.conditionSelected.condition_type !==null && this.conditionSelected.attr.length> 0){
+    const condition = this.eventService.getCondition();
+    if (condition.attr.length > 0) {
+      this.conditionSelected = condition;
+      console.log(condition);
+    }
+    if (this.conditionSelected !== null && this.conditionSelected.condition_type !== null && this.conditionSelected.attr.length > 0) {
       return true;
     }
     return false;

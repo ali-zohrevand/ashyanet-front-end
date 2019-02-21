@@ -6,18 +6,22 @@ import {Condition} from './condition';
   providedIn: 'root'
 })
 export class EventService {
-  private conditin: Condition;
+  private static conditin: Condition;
   constructor(private apiService: ApiService) {
-    this.conditin = new Condition();
+
   }
   getCondition() {
-    return this.conditin;
+    if (!EventService.conditin) {
+      EventService.conditin = new Condition();
+      // ... any one time initialization goes here ...
+    }
+    return EventService.conditin ;
   }
   setCondition(c: Condition) {
-    this.conditin = c;
+    EventService.conditin = c;
   }
   clearCondition() {
-    this.conditin = null;
-    this.conditin = new Condition();
+    EventService.conditin  = null;
+    EventService.conditin  = this.getCondition();
   }
 }
