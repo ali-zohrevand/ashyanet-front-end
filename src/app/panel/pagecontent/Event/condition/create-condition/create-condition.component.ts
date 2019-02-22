@@ -12,6 +12,7 @@ export class CreateConditionComponent implements OnInit {
   firsrAttr: any;
   secondAttr: any;
   inpuType: string;
+  inpuTypeJson: string;
   constructor(private eventServices: EventService) { }
 
   ngOnInit() {

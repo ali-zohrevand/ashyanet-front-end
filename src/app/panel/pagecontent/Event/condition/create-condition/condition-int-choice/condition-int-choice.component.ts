@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {Condition} from '../../../../../../models/Event/condition';
 import {EventService} from '../../../../../../models/Event/event.service';
 
@@ -26,4 +26,6 @@ export class ConditionIntChoiceComponent implements OnInit {
     }
     this.eventService.setCondition(this.condition);
   }
+
+
 }

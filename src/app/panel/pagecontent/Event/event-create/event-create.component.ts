@@ -5,6 +5,8 @@ import {el} from '@angular/platform-browser/testing/src/browser_util';
 import {DeviceCommand} from '../../../../models/device/device-command';
 import {Condition} from '../../../../models/Event/condition';
 import {EventService} from '../../../../models/Event/event.service';
+import {EventDataCommand} from "../../../../models/Event/event-data-command";
+import {StandardMessage} from "../../../../models/ApiMessage/standard-message";
 
 @Component({
   selector: 'app-event-create',
@@ -75,7 +77,9 @@ export class EventCreateComponent implements OnInit {
 
   IsConditionSelected() {
     const condition = this.eventService.getCondition();
-    if (condition.attr.length > 0) {
+
+    if (condition.attr.length > 0 && condition.attr.length < 3) {
+      this.conditionSelected = new Condition();
       this.conditionSelected = condition;
       console.log(condition);
     }
@@ -83,5 +87,23 @@ export class EventCreateComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  clearCondition() {
+    this.conditionSelected = new Condition();
+  }
+  submitEvent(){
+    if (this.selectedCommand.name !=='' && this.selectedAddress!=='' && this.conditionSelected) {
+      let event = new EventDataCommand();
+      event.address_topic_name = this.selectedAddress;
+      event.command_name = this.selectedCommand.name;
+      event.command_type = 0;
+      event.condition = this.conditionSelected;
+      this.eventService.PostEventObservable(event).subscribe((message: StandardMessage)=>{
+        console.log(message);
+      },(err:Response) => {
+        console.log(err);
+      });
+    }
   }
 }

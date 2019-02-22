@@ -56,6 +56,10 @@ pathFixer(path: string): string {
     case 'data':
       this.apiPath = this.dataPath;
       break;
+    case 'event':
+      this.apiPath = '/user/event';
+
+      break;
     default:
       break;
   }

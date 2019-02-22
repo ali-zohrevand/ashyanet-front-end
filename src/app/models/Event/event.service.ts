@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import {ApiService} from '../../services/API/api.service';
 import {Condition} from './condition';
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventService {
   private static conditin: Condition;
-  constructor(private apiService: ApiService) {
+  constructor(private ApiServices: ApiService) {
 
   }
   getCondition() {
@@ -17,11 +18,15 @@ export class EventService {
     }
     return EventService.conditin ;
   }
+
   setCondition(c: Condition) {
     EventService.conditin = c;
   }
   clearCondition() {
     EventService.conditin  = null;
     EventService.conditin  = this.getCondition();
+  }
+  PostEventObservable(body: object): Observable<object> {
+    return this.ApiServices.postApi('event', body);
   }
 }

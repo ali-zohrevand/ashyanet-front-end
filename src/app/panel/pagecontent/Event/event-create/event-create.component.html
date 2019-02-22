@@ -130,7 +130,7 @@
               </p>
             </div>
             <div *ngIf="selectedDevices.devicename !==''">
-              <p >
+              <p>
                 آدرس تاپیک مورد نظر خود را انتخاب کنید.
               </p>
               <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap"
@@ -219,13 +219,16 @@
           </div>
           <div *ngIf="currentSection === 4" id="step-4">
             <h4 class="StepTitle">تعیین شرایط رخ داد</h4>
+            <p *ngIf="selectedCommand.name === ''">
+               دستوری انتخاب نشده است. لطفا به مرحله قبل بازگشته و دستوری را انتخاب نمایید.
+            </p>
             <div *ngIf="selectedCommand.name !==''">
-              <app-create-condition (conditionCreatedFunction)="conditionSelected = $event" ></app-create-condition>
+              <app-create-condition ></app-create-condition>
             </div>
             <br>
           </div>
-          <hr>
 
+            <br>
         </div>
         <!-- End SmartWizard Content -->
 
@@ -233,13 +236,70 @@
       </div>
 <br>
       <div style="float: left">
+        <button *ngIf="currentSection === MaxSection " class="btn btn-danger" (click)="clearCondition()"> پاک سازی شرایط رخ داد</button>
         <button class="btn btn-default" [disabled]="currentSection === 1"  (click)="prevSection()"> قبلی </button>
         <button class="btn btn-primary" [disabled]="currentSection === MaxSection " (click)="nexSection()"> بعدی </button>
-
       </div>
     </div>
   </div>
 </div>
 <div *ngIf="IsConditionSelected()" class="row">
-<h1> Hi!!</h1>
+    <h3>وضعیت رخداد انتخابی </h3>
+
+
+  <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h3>ایحاد رخ داد جدید
+        </h3>
+
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <table    class="table table-striped table-bordered">
+          <thead>
+          <tr>
+            <th>آدرس داده </th>
+            <th>نوع دستور</th>
+            <th>نام دستور</th>
+            <th> نام کلید json</th>
+            <th>نوع شرط رخ داد</th>
+            <th>حدود شرط رخ داد</th>
+          </tr>
+          </thead>
+          <tr>
+            <td>
+              {{selectedAddress}}
+            </td>
+            <td>mqtt</td>
+            <td>
+              {{selectedCommand.name}}
+            </td>
+            <td>
+              <div *ngIf="conditionSelected.json_attribute_name && conditionSelected.json_attribute_name!== ''">{{conditionSelected.json_attribute_name}}</div>
+              <div *ngIf="!conditionSelected.json_attribute_name || conditionSelected.json_attribute_name === ''"> --</div>
+            </td>
+            <td>
+              <div [ngSwitch]="conditionSelected.condition_type">
+                <div *ngSwitchCase="0">کوچکتر از عدد</div>
+                <div *ngSwitchCase="1"> بزرگتر از عدد</div>
+                <div *ngSwitchCase="2">بین دو عدد</div>
+                <div *ngSwitchCase="3"> برابر با</div>
+              </div>
+            </td>
+            <td>
+            <div *ngIf="conditionSelected.attr[0] !==null"> {{conditionSelected.attr[0]}}</div>
+              <div *ngIf="conditionSelected.attr[1] !==null"> -  {{conditionSelected.attr[1]}}</div>
+
+            </td>
+          </tr>
+          <tbody>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+    <button class="btn btn-success" (click)="submitEvent()"> ایجاد رخ داد</button>
+  </div>
+
 </div>
