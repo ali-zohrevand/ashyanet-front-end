@@ -5,8 +5,8 @@ import {el} from '@angular/platform-browser/testing/src/browser_util';
 import {DeviceCommand} from '../../../../models/device/device-command';
 import {Condition} from '../../../../models/Event/condition';
 import {EventService} from '../../../../models/Event/event.service';
-import {EventDataCommand} from "../../../../models/Event/event-data-command";
-import {StandardMessage} from "../../../../models/ApiMessage/standard-message";
+import {EventDataCommand} from '../../../../models/Event/event-data-command';
+import {StandardMessage} from '../../../../models/ApiMessage/standard-message';
 
 @Component({
   selector: 'app-event-create',
@@ -29,6 +29,7 @@ export class EventCreateComponent implements OnInit {
   conditionType: number;
   firstAttr: any;
   secondAttr: any;
+  resetCondition: boolean;
   constructor(private deviceServices: DevicesService, private eventService: EventService) {
   }
 
@@ -81,7 +82,6 @@ export class EventCreateComponent implements OnInit {
     if (condition.attr.length > 0 && condition.attr.length < 3) {
       this.conditionSelected = new Condition();
       this.conditionSelected = condition;
-      console.log(condition);
     }
     if (this.conditionSelected !== null && this.conditionSelected.condition_type !== null && this.conditionSelected.attr.length > 0) {
       return true;
@@ -91,19 +91,29 @@ export class EventCreateComponent implements OnInit {
 
   clearCondition() {
     this.conditionSelected = new Condition();
+    this.eventService.clearCondition();
+    this.resetCondition = true;
   }
-  submitEvent(){
-    if (this.selectedCommand.name !=='' && this.selectedAddress!=='' && this.conditionSelected) {
-      let event = new EventDataCommand();
+  submitEvent() {
+    if (this.selectedCommand.name !== '' && this.selectedAddress !== '' && this.conditionSelected) {
+      const event = new EventDataCommand();
       event.address_topic_name = this.selectedAddress;
       event.command_name = this.selectedCommand.name;
       event.command_type = 0;
       event.condition = this.conditionSelected;
-      this.eventService.PostEventObservable(event).subscribe((message: StandardMessage)=>{
+      this.eventService.PostEventObservable(event).subscribe((message: StandardMessage) => {
+        console.log('message');
+
         console.log(message);
-      },(err:Response) => {
+      }, (err: Response) => {
+        console.log('err');
+
         console.log(err);
       });
     }
+    this.clearCondition();
+    this.selectedCommand = new DeviceCommand();
+    this.selectedAddress = '';
+    this.selectedDevices = null;
   }
 }

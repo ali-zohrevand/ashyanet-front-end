@@ -223,7 +223,7 @@
                دستوری انتخاب نشده است. لطفا به مرحله قبل بازگشته و دستوری را انتخاب نمایید.
             </p>
             <div *ngIf="selectedCommand.name !==''">
-              <app-create-condition ></app-create-condition>
+              <app-create-condition [reset]="resetCondition" ></app-create-condition>
             </div>
             <br>
           </div>
@@ -236,7 +236,11 @@
       </div>
 <br>
       <div style="float: left">
+        <button *ngIf="currentSection === MaxSection " class="btn btn-success" > اتمام فرآیند</button>
+
         <button *ngIf="currentSection === MaxSection " class="btn btn-danger" (click)="clearCondition()"> پاک سازی شرایط رخ داد</button>
+      </div>
+      <div style="float: left">
         <button class="btn btn-default" [disabled]="currentSection === 1"  (click)="prevSection()"> قبلی </button>
         <button class="btn btn-primary" [disabled]="currentSection === MaxSection " (click)="nexSection()"> بعدی </button>
       </div>

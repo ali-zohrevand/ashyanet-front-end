@@ -59,7 +59,6 @@ import { CreateConditionComponent } from './panel/pagecontent/Event/condition/cr
 import { ConditionIntChoiceComponent } from './panel/pagecontent/Event/condition/create-condition/condition-int-choice/condition-int-choice.component';
 import { ConditionStringChoiceComponent } from './panel/pagecontent/Event/condition/create-condition/condition-string-choice/condition-string-choice.component';
 import {EventService} from './models/Event/event.service';
-import { EventMqttCommandListComponent } from './panel/pagecontent/Event/Command-Type/event-mqtt-command-list/event-mqtt-command-list.component';
 
 @NgModule({
   declarations: [
@@ -105,7 +104,6 @@ import { EventMqttCommandListComponent } from './panel/pagecontent/Event/Command
     CreateConditionComponent,
     ConditionIntChoiceComponent,
     ConditionStringChoiceComponent,
-    EventMqttCommandListComponent,
   ],
   imports: [
     BrowserModule,

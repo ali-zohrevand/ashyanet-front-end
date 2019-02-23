@@ -27,6 +27,7 @@ export class EventService {
     EventService.conditin  = this.getCondition();
   }
   PostEventObservable(body: object): Observable<object> {
+    console.log('post event')
     return this.ApiServices.postApi('event', body);
   }
 }
