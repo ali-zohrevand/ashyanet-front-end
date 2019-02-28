@@ -7,8 +7,10 @@ import {Condition} from '../../../../models/Event/condition';
 import {EventService} from '../../../../models/Event/event.service';
 import {EventDataCommand} from '../../../../models/Event/event-data-command';
 import {StandardMessage} from '../../../../models/ApiMessage/standard-message';
-
-@Component({
+import {AlertifyService} from '../../../../services/alertify/alertify.service';
+import {SweetAlertService} from '../../../../services/sweetAlert/sweet-alert.service';
+import {SweetAlert2Service} from '../../../../services/sweetAlert/sweet-alert2.service';
+ @Component({
   selector: 'app-event-create',
   templateUrl: './event-create.component.html',
   styleUrls: ['./event-create.component.css']
@@ -30,7 +32,7 @@ export class EventCreateComponent implements OnInit {
   firstAttr: any;
   secondAttr: any;
   resetCondition: boolean;
-  constructor(private deviceServices: DevicesService, private eventService: EventService) {
+  constructor(private deviceServices: DevicesService, private eventService: EventService, private alert: SweetAlert2Service) {
   }
 
   ngOnInit() {
@@ -58,6 +60,7 @@ export class EventCreateComponent implements OnInit {
   nexSection() {
 
     this.currentSection = this.currentSection + 1;
+    this.alert.errorAlert('alert', 'error happend');
   }
   whatIsMyStyle(sectionNumber: number) {
     if (sectionNumber === this.currentSection) {
@@ -103,8 +106,8 @@ export class EventCreateComponent implements OnInit {
       event.condition = this.conditionSelected;
       this.eventService.PostEventObservable(event).subscribe((message: StandardMessage) => {
         console.log('message');
-
         console.log(message);
+
       }, (err: Response) => {
         console.log('err');
 

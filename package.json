@@ -25,6 +25,8 @@
     "jquery": "^3.3.1",
     "moment": "^2.24.0",
     "rxjs": "~6.3.3",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^8.2.4",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

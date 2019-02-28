@@ -37,6 +37,9 @@ export class MenuSectionComponent implements OnInit {
      this.loadScript('../../../../../assets/vendors/jqvmap/dist/maps/jquery.vmap.world.js');
      this.loadScript('../../../../../assets/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js');
     this.loadScript('../../../../../assets/js/custom.js');
+    this.loadScript('../../../../../assets/js/alertifyjs/build/alertify.min.js');
+    /*
+    * ../../../../../assets/*/
 
   }
   public loadScript(url: string) {
