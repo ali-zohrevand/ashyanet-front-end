@@ -35,6 +35,8 @@ import {EventMainComponent} from './panel/pagecontent/Event/event-main/event-mai
 import {EventListComponent} from './panel/pagecontent/Event/event-list/event-list.component';
 import {EventCreateComponent} from './panel/pagecontent/Event/event-create/event-create.component';
 import {WizardFormComponent} from './Lab/WizardForm/wizard-form/wizard-form.component';
+import {LabTableComponent} from "./Lab/Table/lab-table/lab-table.component";
+import {LabTableMaterialComponent} from "./Lab/Table/MatTable/lab-table-material/lab-table-material.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/panel', pathMatch: 'full'},
@@ -79,7 +81,7 @@ const routes: Routes = [
           {path: 'list' , component: EventListComponent},
           {path: 'create', component: EventCreateComponent}
         ]},
-      {path: 'lab', component: WizardFormComponent}
+      {path: 'lab', component: LabTableMaterialComponent}
 
 
     ]

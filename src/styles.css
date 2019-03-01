@@ -22,3 +22,4 @@
 @import "assets/css/spiner/load8.css";
 @import "assets/css/myCustomCss.css";
 @import "assets/js/alertifyjs/build/css/alertify.rtl.css";
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";

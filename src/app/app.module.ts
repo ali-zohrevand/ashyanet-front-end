@@ -59,6 +59,18 @@ import { CreateConditionComponent } from './panel/pagecontent/Event/condition/cr
 import { ConditionIntChoiceComponent } from './panel/pagecontent/Event/condition/create-condition/condition-int-choice/condition-int-choice.component';
 import { ConditionStringChoiceComponent } from './panel/pagecontent/Event/condition/create-condition/condition-string-choice/condition-string-choice.component';
 import {EventService} from './models/Event/event.service';
+import { LabTableComponent } from './Lab/Table/lab-table/lab-table.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {TableModule} from "primeng/table";
+import { LabTableMaterialComponent } from './Lab/Table/MatTable/lab-table-material/lab-table-material.component';
+import {
+  MatFormFieldModule, MatInputModule,
+  MatPaginator,
+  MatPaginatorModule,
+  MatSort, MatSortModule,
+  MatTableDataSource,
+  MatTableModule
+} from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -104,9 +116,19 @@ import {EventService} from './models/Event/event.service';
     CreateConditionComponent,
     ConditionIntChoiceComponent,
     ConditionStringChoiceComponent,
+    LabTableComponent,
+    LabTableMaterialComponent,
   ],
   imports: [
     BrowserModule,
+    MatFormFieldModule,
+    MatInputModule,
+    BrowserAnimationsModule,
+    TableModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
     AppRout,
     FormsModule,
     ReactiveFormsModule,
