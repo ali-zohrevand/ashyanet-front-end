@@ -4,4 +4,6 @@ export class DeviceCommand {
   public dsc: string;
   public topic: string;
 
+  constructor() {
+  }
 }

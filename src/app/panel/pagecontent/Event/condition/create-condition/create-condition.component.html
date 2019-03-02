@@ -1,0 +1,66 @@
+  <p>در این بخش می بایست داده ای که میخواهید شرایط آنرا بررسی کرده و در صورت وقوع دستور انتخابی ایجاد شود را مشخض کنید.
+  </p>
+  <div class="form-group ">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12"> انتخاب نوع داده</label>
+    <div class="col-md-7 col-xs-12">
+      <select [(ngModel)]="inpuType" class="form-control col-md-3 col-sm-3 col-xs-12">
+        <option value="string">رشته</option>
+        <option value="int">عدد</option>
+        <option value="json">جیسون</option>
+      </select>
+    </div>
+  </div>
+  <br>
+  <hr>
+  <div [ngSwitch]="inpuType" >
+    <div *ngSwitchCase="'string'">
+      <app-condition-string-choice></app-condition-string-choice>
+    </div>
+    <div *ngSwitchCase="'int'" (click)="setCondition()">
+
+      <app-condition-int-choice></app-condition-int-choice>
+      </div>
+    <div *ngSwitchCase="'json'">
+      <div class="form-group">
+
+        <div class="form-group ">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12"> نام متغیر json</label>
+          <div class="col-md-7 col-xs-12">
+            <input class="form-control " id="JsonName" type="text" [(ngModel)]="condition.json_attribute_name" name="JsonName"  >
+          </div>
+          </div>
+
+        <div class="form-group ">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12">  انتخاب نوع داده json</label>
+          <div class="col-md-7 col-xs-12">
+            <select [(ngModel)]="inpuTypeJson" class="form-control col-md-3 col-sm-3 col-xs-12">
+              <option value="string">رشته</option>
+              <option value="int">عدد</option>
+            </select>
+          </div>
+          <br>
+          <hr>
+          <div [ngSwitch]="inpuTypeJson" >
+            <div *ngSwitchCase="'int'">
+              <app-condition-int-choice></app-condition-int-choice>
+            </div>
+            <div *ngSwitchCase="'string'">
+              <app-condition-string-choice></app-condition-string-choice>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+      </div>
+‍‍
+
+    </div>
+
+    <div *ngSwitchDefault > نوع داده را انتخاب کنید.</div>
+  </div>
+  <br>
+  <hr>

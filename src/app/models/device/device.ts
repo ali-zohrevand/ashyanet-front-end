@@ -17,6 +17,7 @@ export class Device {
   public mqtt_password: string;
 
   constructor() {
+    this.devicename ='';
     this.publish = [];
     this.subscribe = [];
     this.pubsub = [];

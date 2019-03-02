@@ -53,6 +53,24 @@ import {TopicSubResolve} from './models/Data/mqtt/topic-sub-resolve';
 import { EventRouterComponent } from './panel/pagecontent/Event/event-router/event-router.component';
 import { EventListComponent } from './panel/pagecontent/Event/event-list/event-list.component';
 import { EventCreateComponent } from './panel/pagecontent/Event/event-create/event-create.component';
+import { EventMainComponent } from './panel/pagecontent/Event/event-main/event-main.component';
+import { WizardFormComponent } from './Lab/WizardForm/wizard-form/wizard-form.component';
+import { CreateConditionComponent } from './panel/pagecontent/Event/condition/create-condition/create-condition.component';
+import { ConditionIntChoiceComponent } from './panel/pagecontent/Event/condition/create-condition/condition-int-choice/condition-int-choice.component';
+import { ConditionStringChoiceComponent } from './panel/pagecontent/Event/condition/create-condition/condition-string-choice/condition-string-choice.component';
+import {EventService} from './models/Event/event.service';
+import { LabTableComponent } from './Lab/Table/lab-table/lab-table.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {TableModule} from "primeng/table";
+import { LabTableMaterialComponent } from './Lab/Table/MatTable/lab-table-material/lab-table-material.component';
+import {
+  MatFormFieldModule, MatInputModule,
+  MatPaginator,
+  MatPaginatorModule,
+  MatSort, MatSortModule,
+  MatTableDataSource,
+  MatTableModule
+} from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -93,9 +111,24 @@ import { EventCreateComponent } from './panel/pagecontent/Event/event-create/eve
     EventRouterComponent,
     EventListComponent,
     EventCreateComponent,
+    EventMainComponent,
+    WizardFormComponent,
+    CreateConditionComponent,
+    ConditionIntChoiceComponent,
+    ConditionStringChoiceComponent,
+    LabTableComponent,
+    LabTableMaterialComponent,
   ],
   imports: [
     BrowserModule,
+    MatFormFieldModule,
+    MatInputModule,
+    BrowserAnimationsModule,
+    TableModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
     AppRout,
     FormsModule,
     ReactiveFormsModule,
