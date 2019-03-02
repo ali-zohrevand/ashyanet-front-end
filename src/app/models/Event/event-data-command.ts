@@ -1,10 +1,11 @@
 import {Condition} from './condition';
 
 export class EventDataCommand {
-  public data_name: string;
+  public address_topic_name: string;
   public command_name: string;
   public condition: Condition;
   public command_type: Command_type;
+  constructor(){}
 }
 
 enum Command_type {

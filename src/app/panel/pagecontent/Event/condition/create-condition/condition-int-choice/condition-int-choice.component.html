@@ -1,0 +1,47 @@
+<div class="form-group ">
+  <label class="control-label col-md-3 col-sm-3 col-xs-12"> انتخاب نوع مقایسه</label>
+  <div class="col-md-7 col-xs-12">
+    <select [(ngModel)]="condition.condition_type" class="form-control col-md-3 col-sm-3 col-xs-12">
+      <option value="0">کمتر از</option>
+      <option value="1">بیشتر از</option>
+      <option value="2">بین دو عدد</option>
+      <option value="3">مساوی</option>
+    </select>
+    <br>
+    <hr>
+    <div [ngSwitch]="condition.condition_type">
+      <div *ngSwitchCase="0">
+        <div class="input-group input-group-sm">
+          <input type="number" class="form-control" [(ngModel)]="firsrAttr" (change)="pushAtrr()"  placeholder="مقدار کران بالا را وارد نمایید">
+          <span class="input-group-addon"> > ورودی </span>
+        </div>
+      </div>
+      <div *ngSwitchCase="1">
+        <div class="input-group input-group-sm">
+          <span class="input-group-addon">  ورودی > </span>
+
+          <input type="number" class="form-control" [(ngModel)]="firsrAttr"  (change)="pushAtrr()" placeholder="مقدار کران پایین را وارد نمایید">
+        </div>
+      </div>
+      <div *ngSwitchCase="2">
+        <div class="input-group input-group-sm">
+          <input type="number" class="form-control" [(ngModel)]="secondAttr" (change)="pushAtrr()" placeholder="مقدار کران بالا را وارد نمایید">
+
+          <span class="input-group-addon">  > ورودی > </span>
+          <input type="number" class="form-control" [(ngModel)]="firsrAttr"(change)="pushAtrr()"  placeholder="مقدار کران پایین را وارد نمایید">
+
+        </div>
+      </div>
+      <div *ngSwitchCase="3">
+        <div class="input-group input-group-sm">
+          <span class="input-group-addon">  ورودی = </span>
+
+          <input type="number" class="form-control" [(ngModel)]="firsrAttr" (change)="pushAtrr()"  placeholder="مقدار برابر">
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+<br>

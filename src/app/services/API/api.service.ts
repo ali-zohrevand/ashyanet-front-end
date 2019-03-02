@@ -30,13 +30,13 @@ export class ApiService {
 pathFixer(path: string): string {
   switch (path) {
     case 'mqtt':
-      this.apiPath = '/user/mqtt';
+      this.apiPath = 'user/mqtt';
       break;
     case 'mqtt-sub':
-      this.apiPath = '/user/mqtt/sub';
+      this.apiPath = 'user/mqtt/sub';
       break;
     case 'mqtt-pub':
-      this. apiPath = '/user/mqtt/pub';
+      this. apiPath = 'user/mqtt/pub';
       break;
     case 'devices':
       this.apiPath = this.devicesLisPAth;
@@ -55,6 +55,10 @@ pathFixer(path: string): string {
       break;
     case 'data':
       this.apiPath = this.dataPath;
+      break;
+    case 'event':
+      this.apiPath = 'user/event';
+
       break;
     default:
       break;
