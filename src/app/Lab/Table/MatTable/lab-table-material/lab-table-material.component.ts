@@ -7,7 +7,7 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 })
 
 export class LabTableMaterialComponent implements OnInit {
-  displayedColumns: string[] = ['index','vin', 'year', 'brand', 'color'];
+  displayedColumns: string[] = ['index', 'vin', 'year', 'brand', 'color'];
   cars: Car[];
   dataSource: MatTableDataSource<Car>;
   @ViewChild(MatPaginator) paginator: MatPaginator;

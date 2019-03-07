@@ -17,38 +17,56 @@
 
     </p>
     <div class="x_content">
+          <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="جست و جو">
+          </mat-form-field>
 
-      <table *ngIf="deviceHasData" class="table table-striped table-bordered" id="datatable-fixed-header">
-        <thead>
-        <tr >
-          <th></th>
-          <th>نام دستگاه</th>
-          <th>توضیحات</th>
-          <th>نوع دستگاه</th>
-          <th>موقعیت مکانی</th>
-          <th>به روز رسانی</th>
-        </tr>
-        </thead>
+          <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+              <ng-container matColumnDef="index">
+                <th mat-header-cell *matHeaderCellDef> # </th>
+                <td mat-cell *matCellDef="let i = index"> {{i +1}} </td>
+              </ng-container>
+              <!-- ID Column -->
+              <ng-container matColumnDef="devicename">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> نام دستگاه </th>
+                <td mat-cell *matCellDef="let row"> {{row.devicename}} </td>
+              </ng-container>
 
+              <!-- Progress Column -->
+              <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> توضیحات </th>
+                <td mat-cell *matCellDef="let row"> {{row.description }} </td>
+              </ng-container>
 
-        <tbody>
-        <tr *ngFor="let device of devices;let i = index">
-          <td>{{i+1}}</td>
-          <td>{{device.devicename}}</td>
-          <td>{{device.description}}</td>
-          <td>{{device.type}}</td>
-          <td>{{device.location}}</td>
-          <td>  <div class="btn-group  btn-group-sm">
-            <a class="btn btn-primary" type="button">ویرایش</a>
-            <a class="btn btn-danger" type="button">حذف</a>
-          </div></td>
-        </tr>
-        </tbody>
-      </table>
-      <p *ngIf="!deviceHasData &&  !errorHapened" class="text-muted font-13 m-b-30">
-        دستگاهی برای نمایش وجود ندارد.
-        <a class="btn btn-default" routerLink="/panel/devices/create"> می توانید دستگاه جدید رو بسازید.</a>
-      </p>
-    </div>
+              <!-- Name Column -->
+              <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> نوع دستگاه </th>
+                <td mat-cell *matCellDef="let row"> {{row.type}} </td>
+              </ng-container>
+
+              <!-- Color Column -->
+              <ng-container matColumnDef="location">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> موقعیت مکانی </th>
+                <td mat-cell *matCellDef="let row" > {{row.location}} </td>
+              </ng-container>
+              <ng-container matColumnDef="op">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> عملیات </th>
+                <td mat-cell *matCellDef="let row" >
+                  <div class="btn-group  btn-group-sm">
+                    <a mat-button class="btn btn-primary" type="button">ویرایش</a>
+                    <a mat-button class="btn btn-danger" type="button">حذف</a>
+                  </div>
+                </td>
+              </ng-container>
+              <tr mat-header-row style="color: #0D3349" *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+              </tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+          </div>
+
+        </div>
   </div>
 </div>

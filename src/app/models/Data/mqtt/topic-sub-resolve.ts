@@ -18,7 +18,7 @@ export class TopicSubResolve implements OnInit, Resolve<Observable<object>> {
     console.log(topicBas64);
     if (topicBas64 !== null) {
       let topicPath: string = '';
-      topicPath=atob(topicBas64);
+      topicPath = atob(topicBas64);
       console.log(topicPath);
       let mqttDataRequest: MqttDataRequest;
       mqttDataRequest = new MqttDataRequest();
