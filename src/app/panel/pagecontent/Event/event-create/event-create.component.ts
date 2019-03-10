@@ -60,7 +60,6 @@ export class EventCreateComponent implements OnInit {
   nexSection() {
 
     this.currentSection = this.currentSection + 1;
-    this.alert.errorAlert('alert', 'error happend');
   }
   whatIsMyStyle(sectionNumber: number) {
     if (sectionNumber === this.currentSection) {
