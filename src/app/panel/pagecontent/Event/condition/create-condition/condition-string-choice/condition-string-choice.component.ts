@@ -15,6 +15,7 @@ export class ConditionStringChoiceComponent implements OnInit,  OnChanges {
 
   ngOnInit() {
     this.condition = new Condition();
+
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (this.firsrAttr != null) {
@@ -24,6 +25,7 @@ export class ConditionStringChoiceComponent implements OnInit,  OnChanges {
   }
 
   pushAtrr() {
+    this.condition.condition_type =3;
     if (this.firsrAttr != null) {
       this.condition.attr.push(this.firsrAttr);
     }
