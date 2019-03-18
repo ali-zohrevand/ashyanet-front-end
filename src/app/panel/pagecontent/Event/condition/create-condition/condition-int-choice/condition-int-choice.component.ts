@@ -17,6 +17,9 @@ export class ConditionIntChoiceComponent implements OnInit {
   }
 
   pushAtrr() {
+    console.log('condition_type');
+
+    console.log(this.condition.condition_type);
       if (this.firsrAttr != null) {
         this.condition.attr.push(this.firsrAttr);
       }

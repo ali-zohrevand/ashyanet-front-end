@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Device} from '../../../../models/device/device';
 import {DevicesService} from '../../../../models/device/devices.service';
 import {el} from '@angular/platform-browser/testing/src/browser_util';
@@ -15,7 +15,7 @@ import {SweetAlert2Service} from '../../../../services/sweetAlert/sweet-alert2.s
   templateUrl: './event-create.component.html',
   styleUrls: ['./event-create.component.css']
 })
-export class EventCreateComponent implements OnInit {
+export class EventCreateComponent implements OnInit , OnChanges {
 
   currentSection = 1;
   MaxSection = 4;
@@ -26,11 +26,7 @@ export class EventCreateComponent implements OnInit {
   selectedAddress: string;
   commandsNumber = 0;
   selectedCommand: DeviceCommand;
-  inpuType: string;
-  conditionSelected: Condition;
-  conditionType: number;
-  firstAttr: any;
-  secondAttr: any;
+  @Input() conditionSelected: Condition;
   resetCondition: boolean;
   constructor(private deviceServices: DevicesService, private eventService: EventService, private alert: SweetAlert2Service) {
   }
@@ -79,14 +75,22 @@ export class EventCreateComponent implements OnInit {
   }
 
   IsConditionSelected() {
+
     const condition = this.eventService.getCondition();
 
-    if (condition.attr.length > 0 && condition.attr.length < 3) {
-      this.conditionSelected = new Condition();
-      this.conditionSelected = condition;
+    if ((condition.attr.length > 0 && condition.attr.length < 3) || condition.json_attribute_name !== ''  ) {
+      this.conditionSelected.attr = condition.attr;
+      if (condition.json_attribute_name !== '') {
+        this.conditionSelected.json_attribute_name = condition.json_attribute_name;
+
+      }
+
     }
-    if (this.conditionSelected !== null && this.conditionSelected.condition_type !== null && this.conditionSelected.attr.length > 0) {
+    if (this.conditionSelected !== null && this.conditionSelected.condition_type !== null && this.conditionSelected.attr.length > 0
+      && this.selectedDevices.devicename !== '' && this.selectedAddress !== '') {
       return true;
+      console.log(this.conditionSelected);
+
     }
     return false;
   }
@@ -97,7 +101,9 @@ export class EventCreateComponent implements OnInit {
     this.resetCondition = true;
   }
   submitEvent() {
-    if (this.selectedCommand.name !== '' && this.selectedAddress !== '' && this.conditionSelected) {
+
+    if (this.selectedCommand.name !== '' && this.selectedAddress !== '' && this.conditionSelected &&
+      this.selectedAddress !== '' && this.selectedDevices.devicename !== ''  ) {
       const event = new EventDataCommand();
       event.address_topic_name = this.selectedAddress;
       event.command_name = this.selectedCommand.name;
@@ -105,17 +111,27 @@ export class EventCreateComponent implements OnInit {
       event.condition = this.conditionSelected;
       this.eventService.PostEventObservable(event).subscribe((message: StandardMessage) => {
         console.log('message');
+        this.alert.successAlert('ایجاد رخ داد' , 'رخ داد با موفقیت ایجاد شد.');
         console.log(message);
 
       }, (err: Response) => {
         console.log('err');
-
+        this.alert.errorAlert('ایجاد رح داد', 'خطایی رخ  داد.' );
         console.log(err);
       });
+
+      this.clearCondition();
+      this.selectedCommand = new DeviceCommand();
+      this.selectedAddress = '';
+      this.selectedDevices = null;
+    } else {
+      this.alert.infoAlert('ایجاد رح داد', 'موارد مورد نیاز ارایه شده را انتخاب نمایید.' );
+
     }
-    this.clearCondition();
-    this.selectedCommand = new DeviceCommand();
-    this.selectedAddress = '';
-    this.selectedDevices = null;
+
+  }
+
+   ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
   }
 }

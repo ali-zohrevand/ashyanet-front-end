@@ -22,6 +22,7 @@ export class CreateConditionComponent implements OnInit, OnChanges {
 
 
   setCondition() {
+    console.log(this.condition);
     this.eventServices.setCondition(this.condition);
   }
 

@@ -17,7 +17,6 @@
       <app-condition-string-choice></app-condition-string-choice>
     </div>
     <div *ngSwitchCase="'int'" (click)="setCondition()">
-
       <app-condition-int-choice></app-condition-int-choice>
       </div>
     <div *ngSwitchCase="'json'">
@@ -26,7 +25,7 @@
         <div class="form-group ">
           <label class="control-label col-md-3 col-sm-3 col-xs-12"> نام متغیر json</label>
           <div class="col-md-7 col-xs-12">
-            <input class="form-control " id="JsonName" type="text" [(ngModel)]="condition.json_attribute_name" name="JsonName"  >
+            <input class="form-control " id="JsonName" type="text" (change)="setCondition()" [(ngModel)]="condition.json_attribute_name" name="JsonName"  >
           </div>
           </div>
 

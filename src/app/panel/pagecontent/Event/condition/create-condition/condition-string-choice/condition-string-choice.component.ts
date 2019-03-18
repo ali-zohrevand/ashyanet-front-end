@@ -1,6 +1,6 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {EventService} from "../../../../../../models/Event/event.service";
-import {Condition} from "../../../../../../models/Event/condition";
+import {EventService} from '../../../../../../models/Event/event.service';
+import {Condition} from '../../../../../../models/Event/condition';
 
 @Component({
   selector: 'app-condition-string-choice',
@@ -25,7 +25,7 @@ export class ConditionStringChoiceComponent implements OnInit,  OnChanges {
   }
 
   pushAtrr() {
-    this.condition.condition_type =3;
+    this.condition.condition_type = 3;
     if (this.firsrAttr != null) {
       this.condition.attr.push(this.firsrAttr);
     }

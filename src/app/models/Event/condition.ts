@@ -4,6 +4,7 @@ export class Condition {
           public attr: any[];
 
   constructor() {
+    this.json_attribute_name = '';
     this.attr = [];
   }
 }
